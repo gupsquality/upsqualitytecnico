@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Placa</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .verde {
+            color: green;
+        }
+
+        .vermelho {
+            color: red;
+        }
+
+        .img-container img {
+            height: auto;
+            margin: 10px 0;
+            /* Adicione um espaço entre as imagens */
+            border-style: groove;
+        }
+
+        .text {
+            margin-top: -250px;
+            /* Ajuste o espaçamento conforme necessário */
+            margin-left: 480px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .button2 {
+            margin-top: 60px;
+            /* Adiciona um espaçamento acima do botão */
+            color: #fff;
+            padding: 5px 5px;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            font-size: 35px;
+            margin-left: 476px;
+            margin-right: 65px;
+        }
+
+        button {
+            margin-top: 10px;
+            /* Adiciona um espaçamento acima do botão */
+            background-color: #4046a0;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            font-size: 15px;
+            margin-left: 0px;
+        }
+
+        h1 {
+            margin-left: 150px;
+            border-style: groove;
+            margin-right: 1020px;
+        }
+
+        .p2 {
+            margin-left: 480px;
+        }
+
+        p {
+            margin-left: 450px;
+            margin-top: -90px;
+            margin-right: 500px;
+            border-style: groove;
+        }
+    </style>
+        <script>
+    function inserirCodigoPlaca() {
+        const codigoPlaca = prompt("Digite o código da placa:");
+        if (codigoPlaca) {
+            // Store the code in localStorage
+            localStorage.setItem('codigoPlaca', codigoPlaca);
+            // Display the code on the page
+            document.getElementById('codigoPlaca').innerText = `Código da Placa: ${codigoPlaca}`;
+            // Enable the "Próximo" button
+            document.getElementById('proximoBtn').disabled = false;
+        }
+    }
+</script>
+</head>
+
+<body>
+    <img src="Captura_de_tela_2023-11-18_125706-removebg-preview.png" alt="">
+    <h1>Placa</h1>
+    <img src="Imagem14.jpg" alt="">
+    <strong><p>Cada equipamento irá ter um número diferente e em outra posição da placa.</p></strong>
+    <div class="text">
+        <div id="codigoPlaca"></div>
+        <button onclick="inserirCodigoPlaca()"><strong>Inserir Código da Placa</strong></button>
+    </div>
+    <div class="p2"><strong><p id="resultado7"></p></strong></div>
+    <div class="button2"><button id="proximoBtn" onclick="window.location.href='pag42.html'" disabled><strong>Próximo</strong></button></div>
+</body>
+
+</html>

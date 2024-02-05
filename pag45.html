@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Placa</title>
+</head>
+<style>
+     body{
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .verde {
+            color: green;
+        }
+
+        .vermelho {
+            color: red;
+        }
+
+        .img-container img {
+            height: auto;
+            margin: 10px 0; /* Adicione um espaço entre as imagens */
+            border-style: groove;
+        }
+        .text {
+            margin-top: -250px; /* Ajuste o espaçamento conforme necessário */
+            margin-left: 480px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .button2 {
+    margin-top: 280px; /* Adiciona um espaçamento acima do botão */
+    color: #fff;
+    padding: 5px 5px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    font-size: 35px; 
+    margin-left: 1100px;
+    margin-right: 65px;
+}
+button{
+    margin-top: -190px; /* Adiciona um espaçamento acima do botão */
+    background-color: #4046a0;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    font-size: 15px; 
+    margin-left: 0px;
+}
+
+h1{
+    margin-left: 120px;
+}
+.p2{
+    margin-left: 480px;
+}
+</style>
+<script>
+    function verificarFusivel() {
+            const escolhaUsuario = document.getElementById('escolhaUsuario');
+            const resultado = document.getElementById('resultado7');
+
+            const input = escolhaUsuario.value.toLowerCase();
+
+            const validResponses = ['bom', 'ruim'];
+
+            if (validResponses.includes(input)) {
+                resultado.textContent = input === 'Substituída' ? 'Substituída' : 'Não foi solicitado a substituição';
+                resultado.classList.toggle('verde', input === 'bom');
+                resultado.classList.toggle('vermelho', input === 'ruim');
+            } else {
+                resultado.textContent = "Resposta inválida. Por favor, digite 'bom' ou 'ruim'.";
+                resultado.classList.remove('verde', 'vermelho');
+            }
+        }
+</script>
+<body>
+    <img src="Captura_de_tela_2023-11-18_125706-removebg-preview.png" alt="">
+    <h1>Placa</h1>
+    <img src="Imagem14.jpg" alt="">
+    <strong><p>Cada equipamento irar ter um número diferente e em outra posição da placa.</p></strong>
+    <div class="text">
+        <label for="escolhaUsuario"><strong>Como está a placa?</strong></label>
+        <select id="escolhaUsuario">
+            <option value="bom"><strong>Substituída</strong></option>
+            <option value="ruim"><strong>Não foi solicitado a substituição</strong></option>
+        </select>
+        <button onclick="verificarFusivel()">Verificar</button>
+     </div>  
+      <div class="p2"><strong><p id="resultado7"></p></strong></div>
+    <div class="button2"><button onclick="window.location.href='pag38.html'">Próximo</button></div>
+
+</body>
+</html>

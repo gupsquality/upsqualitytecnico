@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fuse Check</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        h1 {
+            margin-left: 150px;
+            border-style: groove;
+            margin-right: 995px;
+        }
+
+        .img2 {
+            width: 400px;
+            height: auto;
+            margin-left: 100px;
+            margin-top: -20px;
+        }
+
+        button {
+            background-color: #4046a0;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            font-size: 25px;
+        }
+
+        .button2 {
+            margin-top: 0px;
+            margin-left: 20px;
+        }
+
+        .button-container {
+            background-color: #4046a0;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            font-size: 25px;
+            margin-top: 0px;
+            margin-left: 50px;
+        }
+
+        img {
+            width: 200px;
+        }
+
+        .button-group {
+            display: flex;
+        }
+
+        .verde {
+            color: green;
+        }
+
+        .vermelho {
+            color: red;
+        }
+    </style>
+     <script>
+        function verificarPlaca() {
+            // Obter elementos do DOM
+            const escolhaUsuario = document.getElementById('escolhaUsuario');
+            const resultado = document.getElementById('resultado7');
+
+            // Obter valor do input
+            const input = escolhaUsuario.value.toLowerCase();
+
+            // Lógica de verificação da placa
+            if (input === 'não') {
+                resultado.textContent = "Placa visivelmente normal";
+                resultado.classList.remove('vermelho');
+                resultado.classList.add('verde');
+            } else if (input === 'sim') {
+                resultado.textContent = "Placa visivelmente queimada";
+                resultado.classList.remove('verde');
+                resultado.classList.add('vermelho');
+            } else {
+                resultado.textContent = "Resposta inválida. Por favor, escolha 'Não' ou 'Sim'.";
+                resultado.classList.remove('verde', 'vermelho');
+            }
+
+            // Armazenar o resultado no localStorage
+            localStorage.setItem('resultadoPlaca', resultado.textContent);
+            
+            // Armazenar a escolha do usuário na localStorage
+            localStorage.setItem('escolhaUsuario', input);
+
+            // Redirecionar para outra página
+            window.location.href = 'pag38.html';
+        }
+    </script>
+</head>
+
+<body>
+    <h1>PLACA</h1><br>
+    <div class="img2"><img src="imagem29.png.jpg" alt="Image Description"></div>
+    <label for="escolhaUsuario"><strong>A placa está visivelmente queimada?</strong></label>
+    <select id="escolhaUsuario">
+        <option value="não"><strong>Não</strong></option>
+        <option value="sim"><strong>Sim</strong></option>
+    </select>
+    <button onclick="verificarPlaca()">Verificar</button>
+    <div id="resultado7"></div>
+    <div class="button-group">
+        
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baterias</title>
+</head>
+<style>
+    .verde {
+            color: green;
+        }
+
+        .vermelho {
+            color: red;
+        }
+        .text {
+            margin-top: -280px;
+            margin-left: 300px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .button2 {
+    margin-top: 320px; 
+    color: #fff;
+    padding: 5px 5px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    font-size: 35px; 
+    margin-left: 280px;
+    margin-right: 65px;
+}
+button{
+    margin-top: -200px; 
+    background-color: #4046a0;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    font-size: 20px; 
+    margin-left: 0px;
+}
+.p2{
+    margin-left: 300px;
+    margin-top: -25px;
+}
+img{
+    max-width: 20%;
+    border-style: groove;
+}
+h1{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 35px;
+    margin-left: 50px;
+    
+}
+p{
+    margin-left: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+}
+h4{
+    margin-left: 300px;
+    margin-top: -200px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    border-style: groove;
+    margin-right: 300px ;
+}
+.img img{
+    border-style: none;
+}
+</style>
+<script>
+     function verificarFusivel() {
+            const escolhaUsuario = document.getElementById('escolhaUsuario');
+            const resultado = document.getElementById('resultado7');
+
+            const input = escolhaUsuario.value.toLowerCase();
+
+            const validResponses = ['bom', 'ruim'];
+
+            if (validResponses.includes(input)) {
+                resultado.textContent = input === 'bom' ? 'Substituída' : 'Não foi solicitado a substituição';
+                resultado.classList.toggle('verde', input === 'bom');
+                resultado.classList.toggle('vermelho', input === 'ruim');
+                proximoButton.disabled = false;
+            } else {
+                resultado.textContent = "Resposta inválida. Por favor, digite 'bom' ou 'ruim'.";
+                resultado.classList.remove('verde', 'vermelho');
+                proximoButton.disabled = true;
+
+            }
+        }
+</script>
+<body>
+    <div class="img img"><img src="Captura_de_tela_2023-11-18_125706-removebg-preview.png" alt=""></div>
+    <h1>Baterias</h1>
+    <img src="Imagem15.png" alt=""><br>
+    <strong><p>tipo de ligação 12 ou 24</p></strong>
+    <img src="Imagem16.jpg" alt="">
+    <strong><h4>Apos substituir as baterias , coloque cola quente nos conectores 
+    </h4></strong>
+    <div class="text">
+        <label for="escolhaUsuario"><strong>Como está a bateria?</strong></label>
+        <select id="escolhaUsuario">
+            <option value="bom"><strong>Substituída</strong></option>
+            <option value="ruim"><strong>Não foi solicitado a substituição</strong></option>
+        </select>
+        <button onclick="verificarFusivel()"><strong>Verificar</strong></button>
+     </div>  
+      <div class="p2"><strong><p id="resultado7"></p></strong></div>
+      <div class="button2"><button id="proximoButton" onclick="window.location.href='pag11.html'" disabled><strong>Próximo</strong></button></div>
+
+</body>
+</html>

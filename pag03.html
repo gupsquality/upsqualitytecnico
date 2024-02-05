@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="PT-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        input {
+            width: 20%;
+            padding: 10px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+            border: 1px solid #000000;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #4046a0;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            font-size: 25px;
+        }
+    </style>
+    <script>
+        function atualizarLocalStorage(inputId) {
+            var texto = document.getElementById(inputId).value;
+            localStorage.setItem(inputId, texto);
+            checkFormValidity();
+        }
+
+        function checkFormValidity() {
+            var inputs = document.querySelectorAll('input');
+            var isValid = true;
+
+            inputs.forEach(function (input) {
+                if (input.value.trim() === '') {
+                    isValid = false;
+                }
+            });
+
+            var nextButton = document.getElementById('nextButton');
+            nextButton.disabled = !isValid;
+        }
+
+        function redirecionarPagina() {
+            window.location.href = 'pag04.html';
+        }
+    </script>
+</head>
+
+<body>
+    <img src="Captura_de_tela_2023-11-18_125706-removebg-preview.png" alt="">
+    <form action="pag04.html">
+        <strong><label for="indexTextoInput1">Numero da O.s:</label></strong>
+        <input type="text" id="indexTextoInput1" name="indexTextoInput1"
+            oninput="atualizarLocalStorage('indexTextoInput1')">
+        <br>
+        <strong><label for="indexTextoInput2">Modelo:</label></strong>
+        <input type="text" id="indexTextoInput2" name="indexTextoInput2"
+            oninput="atualizarLocalStorage('indexTextoInput2')">
+        <br>
+        <strong> <label for="indexTextoInput3">Potencia:</label></strong>
+        <input type="text" id="indexTextoInput3" name="indexTextoInput3"
+            oninput="atualizarLocalStorage('indexTextoInput3')">
+        <br>
+        <label for="indexTextoInput4"><strong>Técnico responsável:</strong></label>
+        <input type="text" id="indexTextoInput4" name="indexTextoInput4"
+            oninput="atualizarLocalStorage('indexTextoInput4')">
+        <br>
+        <button type="submit" id="nextButton" disabled><strong>Proximo</strong></button><br>
+    </form>
+    <button>
+        <img src= alt="Ícone de fone de ouvido">
+        Suporte
+    </button>
+
+    <script>
+        checkFormValidity(); // Check form validity initially
+    </script>
+</body>
+
+</html>

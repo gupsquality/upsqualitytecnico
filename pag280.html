@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kit de Manutenção</title>
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        button {
+            background-color: #4046a0;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            font-size: 25px;
+        }
+        .result {
+            font-size: 25px;
+            margin-top: 20px;
+        }
+
+        .red {
+            color: red;
+        }
+
+        .green {
+            color: green;
+        }
+
+        .yellow {
+            color: rgb(255, 123, 0);
+        }
+
+        .blue {
+            color: blue;
+        }
+
+        .pink {
+            color: rgb(153, 0, 255);
+        }
+        .textoVerde {
+            color: green;
+        } 
+        .textoVermelho {
+            color: red;
+        }
+        .textoAzul{
+            color: rgb(4, 0, 255);
+        }
+        .textoRoxo{
+            color: rgb(162, 0, 255);
+        }
+
+        select {
+            margin-top: 10px;
+            padding: 10px 15px;
+            border-radius: 15px;
+            font-size: 15px;
+            margin-left: 10px;
+        }
+
+        .p8{
+            margin-top: -0px;
+        }
+
+        .p2 {
+            margin-left: 120px;
+        }
+
+        .p3 {
+            margin-left: 200px;
+            margin-top: -14px;
+        }
+
+        .p4 {
+            margin-left: 200px;
+            margin-top: -53px;
+        }
+
+        .p5 {
+            margin-left: 200px;
+            margin-top: -53px;
+        }
+
+        .p6 {
+            margin-left: 200px;
+            margin-top: 40px;
+        }
+
+        .p7 {
+            margin-left: 200px;
+            margin-top: -10px;
+        }
+        .Escolha{
+margin-top: -140px;
+        }
+        .modelo{
+            margin-top: 50px;
+            margin-left: 200px;
+        }
+        .Potencia{
+            margin-left: 400px;
+        }
+    </style>
+</head>
+
+<body>
+    <img src="imagem 45.png" alt="">
+<div class="modelo"><div id="resultado">
+ <div class="p3">283 kit manutenção NO-BREAK (600-1kva)</div></p>
+<div class="p4">246 kit manutenção NO-BREAK (1kva-2kva)</div></p>
+  <div class="p5">238 kit manutenção NO-BREAK (2kva-3kva)</div></p>
+  <div class="p6">297 kit manutenção NO-BREAK (3kva-4kva)</div></p>
+    <div class="p7">216 kit manutenção NO-BREAK (4kva-10kva)</div></p>
+    </div></div>
+    
+    <div class="Potencia"><label for="quantidade">Potencia:</label>
+    <span id="quantidadeSpan"></span><br></div>
+
+    <!-- Lista de opções para escolher a bateria -->
+    <div class="Escolha"><label for="alternativas">Escolha a bateria:</label>
+    <select id="alternativas" name="alternativas" onchange="escolherBateria(this.value)">
+        <option value="" selected disabled hidden>Selecione a bateria</option>
+        <option value=".006 Bateria 5ah">.006 Bateria 5ah</option>
+        <option value=".053 Bateria 7ah">.053 Bateria 7ah</option>
+        <option value=".045 Bateria 18ah">.045 Bateria 18ah</option>
+        <option value=".097 Bateria 9ah">.097 Bateria 9ah</option>
+        <option value=".121 Bateria 21ah">.121 Bateria 21ah</option>
+    </select><div id="escolhaResultado"></div></div>
+    
+<br>
+
+    <button id="botao1" onclick="window.location.href='pag55.html'"><strong>Próximo</strong></button>
+
+    <script>
+       
+        function getQuantidadeFromLocalStorage() {
+            var quantidade = localStorage.getItem("quantidade");
+            document.getElementById("quantidadeSpan").innerText = quantidade;
+            return parseInt(quantidade);
+        }
+
+        function applyStyles() {
+            var quantidade = getQuantidadeFromLocalStorage();
+
+            if (quantidade >= 1001 && quantidade <= 2000) {
+                document.querySelector('.p4').classList.add('red');
+            } else if (quantidade >= 2001 && quantidade <= 3000) {
+                document.querySelector('.p5').classList.add('green');
+            } else if (quantidade >= 3001 && quantidade <= 4000) {
+                document.querySelector('.p6').classList.add('yellow');
+            } else if (quantidade >= 4001 && quantidade <= 10000) {
+                document.querySelector('.p7').classList.add('blue');
+            } else if (quantidade >= 600 && quantidade <= 1000) {
+                document.querySelector('.p3').classList.add('pink');
+            }
+        }
+ function escolherBateria(opcao) {
+    var escolhaResultado = document.getElementById("escolhaResultado");
+    escolhaResultado.innerHTML = "Você escolheu a bateria: " + opcao;
+}
+
+        // Obter o valor da alternativa da URL
+        var urlParams = new URLSearchParams(window.location.search);
+        var alternativa = urlParams.get('alternativa');
+
+        // Verificar se a alternativa é "12v7ah" e, se sim, aplicar a classe de estilo
+        if (alternativa === ".006 Bateria 5ah") {
+            document.getElementById("paragrafo7ah").classList.add("textoVerde");
+        }
+        // Verificar se a alternativa é "12v5ah" e, se sim, aplicar a classe de estilo
+        if (alternativa === ".053 Bateria 7ah") {
+            document.getElementById("paragrafo5ah").classList.add("textoVermelho");
+        }
+        if (alternativa === ".045 Bateria 18ah") {
+            document.getElementById("paragrafo18ah").classList.add("textoAzul");
+        }
+        if (alternativa === ".097 Bateria 9ah") {
+            document.getElementById("paragrafo9ah").classList.add("textoRoxo");
+        }
+        if (alternativa === ".121 Bateria 21ah") {
+            document.getElementById("paragrafo9ah").classList.add("textoRoxo");
+        }
+
+        window.onload = function () {
+            getQuantidadeFromLocalStorage();
+            applyStyles();
+        };
+    </script>
+</body>
+
+</html>

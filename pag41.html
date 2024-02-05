@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ventilador</title>
+</head>
+<style>
+        .verde {
+            color: green;
+        }
+
+        .vermelho {
+            color: red;
+        }
+
+        .azul {  
+            color: blue;
+        }
+        button{
+    margin-top: -200px; /* Adiciona um espaçamento acima do botão */
+    background-color: #4046a0;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    font-size: 15px; 
+    margin-left: 0px;
+}
+.text {
+            margin-top: -250px; /* Ajuste o espaçamento conforme necessário */
+            margin-left: 250px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+            h4{
+                margin-top: 00px;
+                margin-left: 250px;
+                margin-right: 500px;
+                font-family: Arial, Helvetica, sans-serif;
+                border-style: groove;
+            }
+            p{
+                border-style: groove;
+                margin-right: 1050px;
+                font-family: Arial, Helvetica, sans-serif;
+
+            }
+            .button2{
+                margin-top: 200px; /* Adiciona um espaçamento acima do botão */
+    color: #fff;
+    padding: 5px 5px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    font-size: 35px; 
+    margin-left: 1100px;
+    margin-right: 65px;
+            }
+            h1{
+                font-family: Arial, Helvetica, sans-serif;
+                margin-left: 50px;
+            }
+</style>
+<script>
+     function verificarFusivel() {
+            const escolhaUsuario = document.getElementById('escolhaUsuario');
+            const resultado = document.getElementById('resultado7');
+
+            const input = escolhaUsuario.value.toLowerCase();
+
+            const validResponses = ['bom', 'ruim'];
+
+            if (validResponses.includes(input)) {
+                resultado.textContent = input === 'bom' ? 'Substituída' : 'Não foi solicitado a substituição';
+                resultado.classList.toggle('verde', input === 'bom');
+                resultado.classList.toggle('vermelho', input === 'ruim');
+                resultado.classList.remove('azul'); // Remove azul class if present
+            } else {
+                if (input === 'sem ventilador') {
+                    resultado.textContent = "Não tem ventilador ";
+                    resultado.classList.remove('verde', 'vermelho');
+                    resultado.classList.add('azul'); // Add azul class
+                } else {
+                    resultado.textContent = "Resposta inválida. Por favor, escolha uma opção válida.";
+                    resultado.classList.remove('verde', 'vermelho', 'azul');
+                }
+            }
+        }
+</script>
+<body>
+    <img src="Captura_de_tela_2023-11-18_125706-removebg-preview.png" alt="">
+    <h1>Ventilador</h1>
+<img src="Imagem18.jpg" alt="">
+<strong><p>O ventilador ira sempre fornecer as seguinte informação (numero + "VDC".)</p></strong>
+    <div class="text"><label for="escolhaUsuario">Escolha a opção:</label>
+    <select id="escolhaUsuario">
+        <strong><option value="bom">Substituída</option></strong>
+        <strong><option value="ruim">Não foi solicitado a 
+            substituição</option></strong>
+       <strong><option value="sem ventilador">Não tem ventilador </option></strong>
+    </select>
+    <button onclick="verificarFusivel()">Verificar</button>
+    <div id="resultado7"></div></div>
+    <h4>O modelo da placa tem que ser exatamente igual , caso não seja favor procurar o almoxarifado.
+    </h4>
+    <div class="button2"><button onclick="window.location.href='pag38.html'">Próximo</button></div>
+
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+</head>
+<body>
+    <h1>Send Email</h1>
+
+Sender Name
+
+<input type="text" id="sendername"> <br> To (Email)
+
+<input type="text" id="to"> <br>
+
+Subject
+
+<input type="text" id="subject"> <br> Reply To (Email)
+
+<input type="text" id="replyto"> <br>
+
+Message <br>
+
+<textarea id="menssage" cols="40" rows="8"></textarea> <br>
+
+<button onclick = "sendMail();">Send</button>
+<script>
+    function sendMail(){
+        (function(){
+            emailjs.init("yU591Iq_1nb03hSKA");
+        })();
+        var params = {
+            sendername: document.querySelector("#sendername").value,
+            to: document.querySelector("#to"). value,
+            subject: document.querySelector("#subject"). value,
+            replyto: document.querySelector("#replyto"). value,
+            message: document.querySelector("#menssage"). value,
+
+        };
+        var serviceID = "service_2bknod5";
+        var tamplateID = "template_oehozsm";
+        emailjs.send(serviceID, tamplateID, params )
+        .then( res => {
+            alert("email sent sucefully");
+        })
+        .catch();
+    }
+    (function () {
+        emailjs.init("your_emailjs_user_id");
+    })();
+    var subjectField = document.querySelector("#subject");
+            subjectField.value = "Cotação de material O.s"; // Preencha automaticamente com o assunto desejado
+    var toEmailField = document.querySelector("#to");
+    toEmailField.value = "pedidodematerial@upsquality.com.br"; // Preencha automaticamente com o endereço desejado
+
+    var params = {
+        sendername: document.querySelector("#sendername").value,
+        to: toEmailField.value,
+        subject: document.querySelector("#subject").value,
+        replyto: document.querySelector("#replyto").value,
+        message: document.querySelector("#message").value,
+    };
+
+    var serviceID = "your_emailjs_service_id";
+    var templateID = "template_oehozsm";
+
+    emailjs.send(serviceID, templateID, params)
+        .then(res => {
+            alert("Email sent successfully");
+        })
+        .catch(error => {
+            console.error("Email failed to send:", error);
+        });
+</script>
+</body>
+</html>

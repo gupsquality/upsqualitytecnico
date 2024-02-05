@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Substituição</title>
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        h1{
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            margin-left: 48px;
+            border-style: groove;
+            margin-right: 730px;
+        }
+        .image-container {
+            width: 40%;
+            display: inline-block;
+            margin-right: -65px;
+        }
+        .image-container2 {
+            width: 26%;
+            display: inline-block;
+            margin-right: -65px;
+        }
+
+        img {
+            width: 50%;
+            height: auto;
+            margin-left: 45px;}
+        .img2{
+            width: 30%;
+        }
+        button{
+            margin-top: 10px; 
+            background-color: #4046a0;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            font-size: 25px;
+            margin-left: 85px;
+        }
+        .text{
+            margin-left: 359px;
+            margin-top: -80px;
+            font-size: 50px;
+        }
+    </style>
+    <SCript>
+        function abrirPagina(pagina) {
+            window.location.href = pagina;        }
+    </SCript>
+</head>
+<body>
+    <div class="img2"><img src="Captura_de_tela_2023-11-18_125706-removebg-preview.png" alt=""></div>
+    <h1>Material para substituição Placa</h1>
+
+    <div class="image-container">
+        <img id="imagem1" src="imagem10.jpg" alt="Imagem 1"><p></p>
+        <button onclick="abrirPagina('pag17.html')">Encaixe</button></div>
+    <div class="image-container2">
+        <img id="imagem2" src="imagem11.jpg" alt="Imagem 2"><p></p>
+        <button onclick="abrirPagina('pag14.html')">Solda</button></div>
+    <div class="text"><strong>ou</strong></div>
+
+    <script>
+        function trocarImagem(imagemId) {
+            var imagem = document.getElementById(imagemId);
+            if (imagem.src.endsWith("imagem10.jpg")) {
+                imagem.src = "nova_imagem1.jpg"; // Substitua pelo caminho da nova imagem 1
+            } else {
+                imagem.src = "nova_imagem2.jpg"; // Substitua pelo caminho da nova imagem 2
+            }
+        }
+    </script>
+</body>
+</html>

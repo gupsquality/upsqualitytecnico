@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        img {
+            width: 120px;
+        }
+
+        .p1 {
+            margin-left: 150px;
+            margin-top: -150px;
+        }
+
+        .p2 {
+            margin-left: 150px;
+            margin-top: -400px;
+        }
+
+        .p3 {
+            margin-left: 300px;
+            margin-top: -208px;
+        }
+
+        .p4 {
+            margin-left: 450px;
+            margin-top: -208px;
+        }
+
+        .p5 {
+            margin-left: 600px;
+            margin-top: -119px;
+        }
+
+        .p6 {
+            margin-left: 750px;
+            margin-top: -193px;
+        }
+
+        .p7 {
+            margin-left: 900px;
+            margin-top: -238px;
+        }
+
+        .p8 {
+            margin-left: 1090px;
+            margin-top: -50px;
+        }
+
+        button {
+            background-color: #4046a0;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            font-size: 20px;
+          
+        }
+        input[type="checkbox"] {
+           width: 40px;
+           height: 20px;
+           margin-right: 150px;
+        }
+        .button{
+            margin-top: 150px;
+        }
+    </style>
+</head>
+
+<body>
+    <img src="Captura_de_tela_2023-11-18_125706-removebg-preview.png" alt=""><br>
+    <button type="button" onclick="openPage('pag08.html')"><strong>Placa</strong></button>
+    <p></p>
+    <button type="button" onclick="openPage('pag09.html')"><strong>Trafo</strong></button>
+    <p></p>
+    <button type="button" onclick="openPage('pag06.html')"><strong>Bateria</strong></button>
+    <p></p>
+    <button type="button" onclick="openPage('pag07.html')"><strong>Botão</strong></button> <br><br>
+    <button type="button" onclick="openPage('pag07.html')"><strong>Mal contato</strong></button> <br><br>
+
+    <div class="p1">
+        <label for="marcarCheckbox1"><strong>Placa:</strong></label>
+        <input type="checkbox" id="marcarCheckbox1" onchange="marcaClique(1)"><br>
+        <img src="WhatsApp Image 2023-12-26 at 15.31.10 (2).jpeg" alt="">
+    </div><br>
+
+    <div class="p2">
+        <label for="marcarCheckbox2"><strong>Bateria:</strong></label>
+        <input type="checkbox" id="marcarCheckbox2" onchange="marcaClique(2)"><br>
+        <img src="WhatsApp Image 2023-12-26 at 15.31.09.jpeg" alt="">
+    </div><br>
+
+    <div class="p3">
+        <label for="marcarCheckbox3"><strong>Trafo:</strong></label>
+        <input type="checkbox" id="marcarCheckbox3" onchange="marcaClique(3)"><br>
+        <img src="WhatsApp Image 2023-12-26 at 15.31.10.jpeg" alt="">
+    </div><br>
+
+    <div class="p4">
+        <label for="marcarCheckbox4"><strong>Gabinete:</strong></label>
+        <input type="checkbox" id="marcarCheckbox4" onchange="marcaClique(4)"><br>
+        <img src="WhatsApp Image 2023-12-26 at 15.31.06.jpeg" alt="">
+    </div>
+
+    <div class="p5">
+        <label for="marcarCheckbox5"><strong>Porta fusível:</strong></label>
+        <input type="checkbox" id="marcarCheckbox5" onchange="marcaClique(5)"><br>
+        <img src="WhatsApp Image 2023-12-26 at 15.31.04.jpeg" alt="">
+    </div>
+
+    <div class="p6">
+        <label for="marcarCheckbox6"><strong>Botão:</strong></label>
+        <input type="checkbox" id="marcarCheckbox6" onchange="marcaClique(6)"><br>
+        <img src="WhatsApp Image 2023-12-26 at 15.31.08.jpeg" alt="">
+    </div>
+
+    <div class="p7">
+        <label for="marcarCheckbox7"><strong>Cabo de força:</strong></label>
+        <input type="checkbox" id="marcarCheckbox7" onchange="marcaClique(7)"><br>
+    </div>
+
+    <div class="p8">
+        <label for="marcarCheckbox8"><strong>Suporte do cabo de força:</strong></label>
+        <input type="checkbox" id="marcarCheckbox8" onchange="marcaClique(8)"><br>
+        <img src="WhatsApp Image 2023-12-26 at 15.31.01 (1).jpeg" alt="">
+    </div>
+    <div class="button"><button class="button-container" onclick="window.location.href='pag304.html'"><strong>Próximo</strong></button></div>
+
+</body>
+
+<script>
+    function marcaClique(numero) {
+        var checkbox = document.getElementById("marcarCheckbox" + numero);
+        var caixaPreenchimento = document.getElementById("caixaPreenchimento" + numero);
+
+        if (checkbox.checked) {
+            // Adicione aqui o código que deseja executar quando o botão for marcado
+            caixaPreenchimento.value = "Preenchido"; // Exemplo: preenche a caixa com o texto "Preenchido"
+        } else {
+            // Adicione aqui o código que deseja executar quando o botão for desmarcado
+            caixaPreenchimento.value = ""; // Limpa o conteúdo da caixa quando desmarcado
+        }
+
+        // Verificar se todas as opções foram escolhidas para habilitar/desabilitar o botão "Próximo"
+        var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        var proximoButton = document.querySelector('.button-container');
+
+        var todasSelecionadas = Array.from(checkboxes).every(checkbox => checkbox.checked);
+        proximoButton.disabled = !todasSelecionadas;
+    }
+
+    // Adiciona um listener de evento para cada imagem
+    var imagens = document.querySelectorAll('img');
+    imagens.forEach(function (imagem, index) {
+        imagem.addEventListener('click', function () {
+            var checkbox = document.getElementById("marcarCheckbox" + (index + 1));
+            checkbox.checked = !checkbox.checked; // Inverte o estado do checkbox ao clicar na imagem
+            marcaClique(index + 1); // Chama a função marcaClique para atualizar o botão "Próximo"
+        });
+    });
+    function openPage(page) {
+            // Adicione aqui o redirecionamento para a página especificada
+            window.location.href = page;
+        }
+</script>
+

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    function verificarFusivel() {
+        const escolhaUsuario = document.getElementById('escolhaUsuario');
+        const resultado = document.getElementById('resultado7');
+        const proximoButton = document.getElementById('proximoButton');
+
+        const input = escolhaUsuario.value.toLowerCase();
+        const validResponses = ['não', 'sim'];
+
+        if (validResponses.includes(input)) {
+            resultado.textContent = input === 'não' ? 'Falar com o supervisor' : 'abrir equipamento';
+            resultado.classList.toggle('verde', input === 'não');
+            resultado.classList.toggle('vermelho', input === 'sim');
+
+            // Habilitar o botão "Próximo" apenas se uma opção válida for escolhida
+            proximoButton.disabled = false;
+        } else {
+            resultado.textContent = "Resposta inválida. Por favor, escolha 'Não' ou 'Sim'.";
+            resultado.classList.remove('verde', 'vermelho');
+
+            // Desabilitar o botão "Próximo" se a resposta for inválida
+            proximoButton.disabled = true;
+        }
+    }
+</script>
+<body>
+    <img src="Captura_de_tela_2023-11-18_125706-removebg-preview.png" alt="">
+    <h1>1° Conferir status da O.S</h1><br>
+    <label for="escolhaUsuario"><strong>O status da O.S está como SUCATA?</strong></label>
+    <select id="escolhaUsuario">
+        <option value="" disabled selected hidden>Escolha uma opção</option>
+        <option value="não"><strong>Não</strong></option>
+        <option value="sim"><strong>Sim</strong></option>
+    </select>
+    <button onclick="verificarFusivel()"><strong>Verificar</strong></button>
+    <div id="resultado7"></div><p></p>
+    <button class="button-container" id="proximoButton" onclick="window.location.href='pag302.html'" disabled><strong>Próximo</strong></button>
+</body>
+<style>
+    body{
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    button {
+        background-color: #4046a0;
+        color: #fff;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 15px;
+        cursor: pointer;
+        margin-bottom: 10px;
+        font-size: 25px;
+    }
+</style>
+</html>

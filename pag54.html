@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>impresso</h1>
+    <!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Destino</title>
+    <style>
+    </style>
+</head>
+
+<body>
+    <h1>Informações Recebidas</h1>
+
+    <p><strong>Técnico responsável:</strong> <span id="spanTecnico"></span></p>
+    <p><strong>Data:</strong> <span id="spanData"></span></p>
+    <p><strong>Número O.s:</strong> <span id="spanNumeroOS"></span></p>
+    <p><strong>Potência:</strong> <span id="spanPotencia"></span> Va.</p>
+    <script>
+        // Retrieve values from localStorage
+        var tecnico = localStorage.getItem("tecnico");
+        var data = localStorage.getItem("data");
+        var numeroOS = localStorage.getItem("numeroOS");
+        var potencia = localStorage.getItem("potencia");
+        
+        // Display information on the page
+        document.getElementById("spanTecnico").textContent = tecnico;
+        document.getElementById("spanData").textContent = data;
+        document.getElementById("spanNumeroOS").textContent = numeroOS;
+        document.getElementById("spanPotencia").textContent = potencia;
+    </script>
+    <button onclick="imprimirPagina()">Imprimir Página</button>
+    <div><button class="button3" onclick="window.location.href='pag55.html'"><strong>Proximo</strong></button></div>
+</body>
+<script>
+     function imprimirPagina() {
+      window.print();
+     }
+</script>
+<style>
+    button{
+      margin-top: 45px; /* Adiciona um espaçamento acima do botão */
+            background-color: #4046a0;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            font-size: 25px;
+    }
+    body{
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    .bloco{
+        border-style: groove;
+        margin-right: 900px;
+        margin-left: 20px;
+        border-color: black;
+    }
+    h3{
+        margin-left: 50px;
+    }
+</style>
+</html>

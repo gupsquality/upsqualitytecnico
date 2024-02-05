@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fusível</title>
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .verde {
+            color: green;
+        }
+
+        .vermelho {
+            color: red;
+        }
+
+        .img-container img {
+            height: auto;
+            margin: 10px 0; 
+            border-style: groove;
+        }
+        .text {
+            margin-top: -250px; 
+            margin-left: 380px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .button3 {
+    margin-top: -40px; 
+    padding: 5px 5px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    font-size: 50px; 
+    margin-left: 400px;
+    margin-right: 65px;
+}
+button{
+    margin-top: -200px;
+    background-color: #4046a0;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    margin-bottom: 10px;
+     
+    margin-left: 0px;
+}
+p{
+    margin-left: 380px;
+}
+h1{
+    margin-left: 120px;
+}
+label{
+    font-size: 25px;
+}
+    </style>
+    <script>
+        function verificarFusivel() {
+            const escolhaUsuario = document.getElementById('escolhaUsuario');
+            const resultado = document.getElementById('resultado7');
+
+            const input = escolhaUsuario.value.toLowerCase();
+
+            const validResponses = ['bom', 'ruim'];
+
+            if (validResponses.includes(input)) {
+                resultado.textContent = input === 'bom' ? 'Aprovado' : 'Substitua por outro e tente ligar novamente.';
+                resultado.classList.toggle('verde', input === 'bom');
+                resultado.classList.toggle('vermelho', input === 'ruim');
+                proximoButton.disabled = false;
+            } else {
+                resultado.textContent = "Resposta inválida. Por favor, digite 'bom' ou 'ruim'.";
+                resultado.classList.remove('verde', 'vermelho');
+                proximoButton.disabled = true;
+
+            }
+        }
+    </script>
+</head>
+<body>
+    <img src="Captura_de_tela_2023-11-18_125706-removebg-preview.png" alt="">
+    <h1>Fusível</h1>
+    <div class="img-container">
+        <img src="Imagem5.png" alt="">
+        <img src="Imagem13.png" alt="">
+    </div>
+
+
+    <div class="text">
+        <label for="escolhaUsuario"><strong>Como está o fusível?</strong></label>
+        <select id="escolhaUsuario">
+            <option value="bom"><strong>Bom</strong></option>
+            <option value="ruim"><strong>Ruim</strong></option>
+        </select>
+        <button onclick="verificarFusivel()"><strong>Verificar</strong></button>
+     </div>  
+      <strong><p id="resultado7"></p></strong>
+    <div class="button3"><button id="proximoButton" onclick="window.location.href='pag11.html'" disabled><strong>Próximo</strong></button></div>
+    
+</body>
+</html>

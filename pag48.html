@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ventilador</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        button {
+            margin-top: -800px;
+            background-color: #4046a0;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            font-size: 25px;
+            margin-left: 10px;
+        }
+    </style>
+    <script>
+        
+        function verificarVentilador() {
+            var escolhaUsuario = document.getElementById('escolhaUsuario').value;
+
+            if (escolhaUsuario) {
+                // Store the selected value in local storage
+                localStorage.setItem('avaliacaoVentilador', escolhaUsuario);
+
+                // Redirect to the next page
+                window.location.href = 'pag49 copy.html';
+            } else {
+                alert('Por favor, escolha uma opção antes de prosseguir.');
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <img src="Captura_de_tela_2023-11-18_125706-removebg-preview.png" alt="">
+    <h1>Ventilador</h1>
+    <img src="Imagem18.jpg" alt="">
+    <div class="text">
+        <label for="escolhaUsuario"><strong>Está rodando sem ruído?</strong></label>
+        <select id="escolhaUsuario">
+            <option value="">Escolha uma opção</option>
+            <option value="ventilador sem ruído">Sim</option>
+            <option value="ventilador com ruido">Não</option>
+            <option value="não contém ventilador">Não tem ventilador</option>
+        </select>
+        <button onclick="verificarVentilador()"><strong>Verificar</strong></button>
+        <div id="resultado7"></div>
+    </div>
+    <br>
+    <button onclick="window.location.href='pag53 copy.html'"><strong>Sim</strong></button>
+    <button onclick="window.location.href='pag49 copy.html'"><strong>Não</strong></button>
+    <br>
+
+    <br>
+    <div class="button2">
+        <button onclick="verificarVentilador()"><strong>Próximo</strong></button>
+    </div>
+</body>
+
+</html>

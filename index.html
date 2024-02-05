@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecionamento com Senha</title>
+</head>
+<body>
+<img src="Captura_de_tela_2023-11-18_125706-removebg-preview.png" alt="">
+    <h1>Insira o código</h1>
+
+    <form id="senhaForm">
+        <label for="senha"><strong>Digite a senha:</strong></label>
+        <input type="password" id="senha" name="senha" required>
+        <button type="button" onclick="verificarSenha()"><strong>Proximo</strong></button>
+    </form>
+
+    <script>
+        function verificarSenha() {
+            var senhaDigitada = document.getElementById('senha').value;
+            var senhaCorreta = '645645';
+
+            if (senhaDigitada === senhaCorreta) {
+                window.location.href = 'pag01.html';
+            } else {
+                alert('Senha incorreta. Tente novamente.');
+            }
+        }
+    </script>
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            align-self: center;
+        }
+        button{
+    margin-top: -200px; 
+    background-color: #4046a0;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    font-size: 20px; 
+    margin-left: 0px;
+}
+    </style>
+
+</body>
+</html>
