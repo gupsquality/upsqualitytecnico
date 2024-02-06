@@ -65,21 +65,17 @@
 
     <script>
          function abrirEmail() {
-      var enderecoEmail = 'almoxerifado@upsquality.com.br';
+      var enderecoEmail = 'pedidodematerial@upsquality.com.br';
 
-      // Substitua 'Assunto do E-mail' pelo assunto desejado
       var assuntoEmail = 'Pedido de materia em garantia.';
 
-      // Substitua 'Corpo do E-mail' pelo corpo desejado
       var corpoEmail = '';
 
       var linkEmail = 'mailto:' + enderecoEmail + '?subject=' + encodeURIComponent(assuntoEmail) + '&body=' + encodeURIComponent(corpoEmail);
 
-      // Abrir o cliente de e-mail padrão do usuário
       window.location.href = linkEmail;
     }
         function copiarTexto() {
-            // Obter os valores dos campos de entrada
             var numeroOs = document.getElementById("NumeroOs").value;
             var fabricante = document.getElementById("Fabricante").value;
             var modelo = document.getElementById("Modelo").value;
@@ -89,13 +85,10 @@
             var Bateria = document.getElementById("Bateria").value;
 
 
-            // Construir o texto a ser copiado
             var texto = `Número O.s: ${numeroOs}\nFabricante: ${fabricante}\nModelo: ${modelo}\nNúmero de Série: ${numeroSerie}\nPotência: ${potencia}\nPlaca: ${placa}\nBateria (quantidade e modelo): ${Bateria}`;
 
-            // Copiar o texto para a área de transferência
             navigator.clipboard.writeText(texto);
 
-            // Avisar o usuário que o texto foi copiado
             alert("Texto copiado:\n" + texto);
         }
     </script>

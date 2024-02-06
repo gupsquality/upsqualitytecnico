@@ -39,8 +39,7 @@
 <body>
     <img src="imagem 47.png" alt="">
     <strong><div class="resultado-container">
-        <strong>Resultado Fusível:</strong>
-        <p id="spanResultadoFusivel" class="verde">Nenhum resultado disponível.</p>
+        <p id="resultado2"></p>
     </div></strong>
     <strong><div class="resultado-container">
         <p id="spanEscolhaUsuario" class="verde">Nenhuma escolha do usuário disponível.</p>
@@ -50,18 +49,33 @@
         <span id="avaliacaoVentilador"></span>
     </div></strong>
     <div>
-    <div>
+        <strong><div id="displayCodigoPlaca"></div></strong>
+        <div>
         <br>
                 <strong><div id="resultadoBateria"></div></strong>
     </div>
-    <p><strong>Tamanho do Ventilador:</strong> <span id="displayTamanho"></span></p>
-    <p><strong>Potência do Ventilador:</strong> <span id="displayPotencia"></span></p>
+    <strong><div id="displayQuantidade"></div></strong><br>
+    <strong><div id="displayModelo"></div></strong>
+    
+    <p><strong>Tamanho do Ventilador:</strong> <strong><span id="displayTamanho"></span></strong></p>
+    <p><strong>Potência do Ventilador:</strong> <strong><span id="displayPotencia"></span></strong></p>
     <strong><div class="button"></div></strong>
         <button onclick="window.location.href='pag280.html'"><strong>Próximo</strong></button>
 
         <button onclick="copiarTextoDaPagina()">Copiar Texto</button>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const storedEstado = localStorage.getItem('estadoFusivel');
+            const resultadoElement = document.getElementById('resultado2');
 
+            if (storedEstado) {
+                resultadoElement.innerHTML = `<strong>Estado do Fusível:</strong> ${storedEstado}`;
+            } else {
+                resultadoElement.innerHTML = '<span class="vermelho">Nenhum resultado disponível.</span>';
+            }
+        });
+    </script>
     <script>
              document.addEventListener('DOMContentLoaded', function () {
             // Retrieve the stored quantity of batteries and selected battery model
@@ -79,11 +93,9 @@
         });
         // Retrieve values from localStorage (replace these with actual values)
         var avaliacaoVentilador = localStorage.getItem('avaliacaoVentilador') || 'Não avaliado';
-        var resultadoFusivel = localStorage.getItem('resultadoFusivel') || 'Nenhum resultado disponível.';
         var resultadoPlaca = localStorage.getItem('resultadoPlaca') || 'Nenhuma escolha do usuário disponível.';
         
         // Display verification results on the page
-        document.getElementById('spanResultadoFusivel').textContent = resultadoFusivel;
         document.getElementById('spanEscolhaUsuario').textContent = resultadoPlaca;
         document.getElementById('avaliacaoVentilador').innerText = avaliacaoVentilador;
 
@@ -119,6 +131,7 @@
         }
         
     </script>
+    
     <script>
         // Obter os valores do localStorage
         var tamanhoVentilador = localStorage.getItem('tamanhoVentilador');
@@ -127,6 +140,13 @@
         // Exibir os valores na página
         document.getElementById('displayTamanho').textContent = tamanhoVentilador;
         document.getElementById('displayPotencia').textContent = potenciaVentilador;
+    </script>
+    <script>
+        // Retrieve the code from localStorage
+        var codigoPlaca = localStorage.getItem('codigoPlaca');
+
+        // Display the code on the page
+        document.getElementById('displayCodigoPlaca').innerText = `Código da Placa: ${codigoPlaca}`;
     </script>
     </script>
 </body>
