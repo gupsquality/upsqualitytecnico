@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baterias</title>
+
+    <script>
+        function mostrarEscolha() {
+            var escolha = document.getElementById("alternativas").value;
+            document.getElementById("resultado").innerHTML = "Modelo escolhido: " + escolha;
+        }
+
+        function verificarNumero(numeroId, quadradoId) {
+            const numero = document.getElementById(numeroId).value;
+
+            if (!isNaN(numero)) {
+                const quadrado = document.getElementById(quadradoId);
+                quadrado.style.backgroundColor = getBackgroundColor(numero);
+            }
+        }
+
+        function verificarNumeroVoltimetro(inputId, quadradoId, mensagemId) {
+            const inputValue = document.getElementById(inputId).value;
+            const quadrado = document.getElementById(quadradoId);
+            const mensagem = document.getElementById(mensagemId);
+
+            let result;
+
+            if (parseFloat(inputValue) > 10) {
+                quadrado.style.backgroundColor = 'green';
+                mensagem.textContent = 'Bateria Boa';
+                mensagem.style.color = 'green';
+                result = 'Bateria Boa';
+            } else {
+                quadrado.style.backgroundColor = 'red';
+                mensagem.textContent = 'Bateria com Defeito';
+                mensagem.style.color = 'red';
+                result = 'Bateria com Defeito';
+            }
+
+            // Store the result in localStorage
+            localStorage.setItem('resultadoBateria', result);
+
+            // Enable the "Próximo" button only if the input is filled
+            const proximoButton = document.getElementById('proximoButton');
+            proximoButton.disabled = inputValue.trim() === '';
+        }
+
+        function getResultText(input) {
+            switch (input) {
+                case '1':
+                    return '1';
+                case '2':
+                    return ' 2';
+            }
+        }
+
+        function verificarFusivel(selectId, resultadoId) {
+            var quantidadeBaterias = document.getElementById(selectId).value;
+            localStorage.setItem('quantidadeBaterias', quantidadeBaterias);
+
+            // Display the message below the selection
+            document.getElementById('mensagemQuantidade').innerHTML = '' + quantidadeBaterias + ' bateria(s).';
+
+            // Rest of your existing code...
+
+            // Optionally, you can navigate to the next page after storing the information.
+            // window.location.href = 'pagina2.html';
+        }
+
+        function mostrarEscolha() {
+            var escolha = document.getElementById("alternativas").value;
+            localStorage.setItem('modeloBateria', escolha);
+            document.getElementById("resultado").innerHTML = "Modelo escolhido: " + escolha;
+        }
+
+        function setResultStyling(input, resultado) {
+            resultado.classList.toggle('verde', input === '12v5ah' || input === '12v9ah');
+            resultado.classList.toggle('vermelho', input === '12v7ah' || input === '12v18ah');
+        }
+
+        function clearResultStyling(resultado) {
+            resultado.classList.remove('verde', 'vermelho');
+        }
+
+        function getBackgroundColor(numero) {
+            return parseInt(numero) > 50 ? 'green' : 'red';
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        button {
+            background-color: #4046a0;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            font-size: 25px;
+            margin-left: 10px;
+        }
+
+        .hr2 {
+            margin-top: 35px;
+        }
+
+        h1 {
+            margin-left: 20px;
+        }
+
+        h5 {
+            font-size: 25px;
+            margin-left: 500px;
+        }
+
+        h6 {
+            font-size: 25px;
+            margin-bottom: 25px;
+            margin-top: -5px;
+        }
+
+        h4 {
+            margin-top: -5px;
+            margin-left: 500px;
+            font-size: 25px;
+        }
+
+        hr {
+            margin-top: -25px;
+        }
+
+        .quadrado {
+            width: 100px;
+            height: 20px;
+            margin-left: 15px;
+            margin-top: -100px;
+            transition: background-color 0.5s;
+            display: inline-block;
+        }
+
+        .mensagem {
+            margin-left: 15px;
+            margin-top: 5px;
+        }
+
+        .p1 {
+            margin-left: 200px;
+            margin-right: 840px;
+            border-style: groove;
+            border-color: black;
+            padding-left: 5px;
+        }
+
+        .p2 {
+            margin-left: 420px;
+            margin-right: 600px;
+            margin-top: -69px;
+            border-style: groove;
+            border-color: black;
+            padding-left: 10px;
+        }
+
+        .p3 {
+            margin-left: 655px;
+            margin-right: 250px;
+            margin-top: -88px;
+            border-style: groove;
+            border-color: black;
+            padding-left: 10px;
+        }
+
+        .p4 {
+            margin-left: 200px;
+            margin-right: 840px;
+            border-style: groove;
+            border-color: black;
+            padding-left: 5px;
+        }
+
+        .p5 {
+            margin-left: 420px;
+            margin-right: 600px;
+            margin-top: -69px;
+            border-style: groove;
+            border-color: black;
+            padding-left: 20px;
+        }
+
+        .p6 {
+            margin-left: 655px;
+            margin-right: 250px;
+            margin-top: -76px;
+            border-style: groove;
+            border-color: black;
+            padding-left: 10px;
+        }
+
+        .button2 {
+            margin-top: 50px;
+            color: #fff;
+            padding: 5px 5px;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            font-size: 35px;
+            margin-left: 1100px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Baterias</h1>
+
+    <label for="escolhaUsuario1"><strong>Quantidade de baterias</strong></label>
+    <select id="escolhaUsuario1">
+        <option value="1"><strong>1</strong></option>
+        <option value="2"><strong>2</strong></option>
+    </select>
+    <button onclick="verificarFusivel('escolhaUsuario1', 'resultado1')"><strong>Verificar </button></strong>
+    <div id="resultado1"></div>
+    <div id="mensagemQuantidade"></div>
+
+    <h2>Modelos de baterias:</h2>
+
+    <form id="myForm">
+       <strong><label for="alternativas">Alternativas:</label></strong> 
+        <select id="alternativas" name="alternativas">
+            <option value="12v5ah">12v5ah</option>
+            <option value="12v7ah">12v7ah</option>
+            <option value="12v9ah">12v9ah</option>
+            <option value="12v18ah">12v18ah</option>
+        </select>
+        <br>
+        <p id="resultado"></p>
+        <div class="button"><input type="button" value="Escolher" onclick="mostrarEscolha()"></div>
+    </form>
+    <div id="resultado2"></div><br><br>
+    <hr>
+    <h4>Teste baterias 5 e 7 ah</h4>
+    <img src="imagem30.png" alt=""><br>
+    <div class="p1"><p><strong>Retire os conectores das baterias.</strong></p></div>
+    <div class="p2"><p><strong>Coloque o testador de bateria.</strong></div></p>
+    <div class="p3"><p><strong>Anotar abaixo o valor exibido no painel. (Caso não informar nenhum valor, colocar "0")</strong></p></div>
+    <h5>Teste baterias 18 a 70 ah</h5>
+    <img src="imagem31.png" alt=""><br>
+    <div class="p4"><p><strong>Retire os conectores das baterias.</strong></p></div>
+    <div class="p5"><p><strong>Coloque o testador de bateria.</strong></p></div>
+    <div class="p6"><p><strong>Anotar o valor exibido no painel. (Caso não informar nenhum valor, colocar "0")</strong></p></div>
+    <div class="hr2"><hr></div>
+   
+    <body>
+        <!-- ... (seu código existente) ... -->
+    
+        <h6>Tensão das baterias (Bateria teste)</h6>
+    <strong><label for="numero1">Tensão das baterias (voltímetro):</label></strong>
+    <input type="text" id="numero1" oninput="verificarNumeroVoltimetro('numero1', 'quadrado', 'mensagem')">
+    <div id="quadrado" class="quadrado"></div>
+    <div id="mensagem" class="mensagem"></div><br><br>
+
+    <div class="button2">
+        <button id="proximoButton" onclick="irParaProximaPagina()"><strong>Próximo</strong></button>
+    </div>
+
+    <script>
+        function verificarNumeroVoltimetro(inputId, quadradoId, mensagemId) {
+            // ... (seu código existente) ...
+
+            // Obtém o valor inserido no input
+            const inputValue = document.getElementById(inputId).value;
+
+            // Determina se a bateria está boa ou com defeito
+            let resultado;
+            if (parseFloat(inputValue) > 10) {
+                resultado = 'Bateria Boa';
+                // Define a cor verde
+                document.getElementById(quadradoId).style.backgroundColor = 'green';
+                // Define a cor verde para a mensagem
+                document.getElementById(mensagemId).style.color = 'green';
+            } else {
+                resultado = 'Bateria com Defeito';
+                // Define a cor vermelha
+                document.getElementById(quadradoId).style.backgroundColor = 'red';
+                // Define a cor vermelha para a mensagem
+                document.getElementById(mensagemId).style.color = 'red';
+            }
+
+            // Exibe a mensagem abaixo do campo de entrada
+            document.getElementById(mensagemId).innerHTML = resultado;
+
+            // Armazena o resultado no localStorage
+            localStorage.setItem('resultadoBateria', resultado);
+        }
+
+        function irParaProximaPagina() {
+            // Redireciona para a página "410.html"
+            window.location.href = '410.html';
+        }
+    </script>
+</body>
+
+</html>

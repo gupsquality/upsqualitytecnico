@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instruções</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #ffffff;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            display: flex;
+            max-width: 500px;
+            border: 3px solid #120a88;
+            margin-bottom: 20px;
+            background-color: #22287a;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s;
+            align-items: center;
+
+        }
+
+        .container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .text-block,
+        .text-block2,
+        .text-block3 {
+            width: 50%;
+            margin: 15px;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #2d38c7;
+            border-radius: 8px;
+            background-color: #ffffff;
+            transition: background-color 0.3s;
+            align-items: center;
+
+        }
+        .text-block2:hover,
+        .text-block3:hover {
+            background-color: #a3a2a2;
+            align-items: center;
+
+        }
+
+        .img1,
+        .img2,
+        .img3 {
+            width: 50%;
+            height: auto;
+            border: 1px solid #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s;
+            align-items: center;
+        }
+
+        .img1 img,
+        .img2 img,
+        .foto img,
+        .img4-container img {
+            width: 100%;
+            height: auto;
+        }
+        .img3 img{
+            height: 100px;
+        }
+
+        .img1:hover,
+        .img2:hover,
+        .img3:hover,
+        .foto:hover {
+            transform: scale(1.05);
+        }
+
+        .btn {
+            margin-top: 190px; 
+            margin-bottom: 20px; 
+            padding: 10px 15px;
+            background-color: #4046a0;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            transition: background-color 0.3s;
+            margin-left: 600px;
+        }
+        .img4-container img {
+            width: 80px;
+            height: 80px;
+            background-color: #fff;
+            margin-top: 228px;           
+        }
+        .btn-container {
+        justify-content: space-between;
+        margin-left: 580px ;
+        margin-top: -400px;
+        border-style: groove;
+        margin-right: 80px;
+    }
+    .foto{
+margin-left: 600px;
+margin-top: -200px;
+}    </style>
+</head>
+<body>
+    <img src="Captura_de_tela_2023-11-18_125706-removebg-preview.png" alt="">
+    <div class="container">
+        <div class="text-block">
+            <strong>1º Digitar o número da O.s referente ao equipamento</strong>
+        </div>
+        <div class="img1"><img src="Imagem1.png" alt=""></div>
+    </div>
+
+    <div class="container">
+        <div class="text-block2">
+            <strong>2º Clicar em editar, para ver o material solicitado.</strong>
+        </div>
+        <div class="img2"><img src="Imagem2.png" alt=""></div>
+    </div>
+
+    <div class="container">
+        <div class="text-block3">
+            <strong>3º Solicitar no almoxarifado todos os materiais que estão indicados no campo de produtos.</strong>
+        </div>
+        <div class="img3"><img src="Imagem3.png" alt=""></div>
+    </div>
+    <div class="img4-container">
+        <div class="btn-container">
+            <strong>Certifique-se que esta  com todo material necessario antes de dar inicio.
+            </strong>
+        </div>
+        <div class="foto"><img src="Imagem4.png" alt=""></div>
+    </div>
+    <a href="401.html" target="">
+    <button class="btn"><strong>Proximo</strong></button>
+</body>
+</html>

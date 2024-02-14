@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fusível</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .img-container img {
+            height: auto;
+            margin: 10px 0;
+            border-style: groove;
+        }
+
+        .text {
+            margin-top: -250px;
+            margin-left: 380px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        button {
+            background-color: #4046a0;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            margin-left: 0px;
+        }
+
+        .button2 {
+            margin-left: 400px;
+            margin-top: 20px;
+        }
+
+        .verde {
+            color: green;
+        }
+
+        .vermelho {
+            color: red;
+        }
+        .p2{
+            margin-left: 500px;
+        }
+    </style>
+</head>
+<body>
+    <img src="Captura_de_tela_2023-11-18_125706-removebg-preview.png" alt="Fuse Image">
+    <h1>Fusível</h1>
+    <div class="img-container">
+        <img src="Imagem5.png" alt="Image 1">
+        <img src="Imagem13.png" alt="Image 2">
+    </div>
+
+    <div class="text">
+        <label for="escolhaUsuario"><strong>Como está o fusível?</strong></label>
+        <select id="escolhaUsuario" name="escolhaUsuario">
+            <option value="bom">Bom</option>
+            <option value="ruim">Ruim</option>
+        </select>
+        <button onclick="verificarFusivel()"><strong>Verificar</strong></button>
+     </div>  
+
+    <div class="p2"><p id="resultado7"></p></div>
+    <div class="button2">
+        <button id="nextButton" onclick="redirectToNextPage()" disabled><strong>Próximo</strong></button>
+    </div>
+
+    <script>
+        function verificarFusivel() {
+            const escolhaUsuario = document.getElementById('escolhaUsuario').value.toLowerCase();
+            const resultado = document.getElementById('resultado7');
+            const nextButton = document.getElementById('nextButton');
+
+            if (escolhaUsuario === 'bom' || escolhaUsuario === 'ruim') {
+                const estado = escolhaUsuario === 'bom' ? 'Fusível em bom estado' : 'Fusível em ruim estado';
+                localStorage.setItem('estadoFusivel', estado);
+                resultado.innerHTML = `<span class="${escolhaUsuario === 'bom' ? 'verde' : 'vermelho'}">${estado}</span>`;
+                nextButton.disabled = false;
+            } else {
+                resultado.innerHTML = '<span class="vermelho">Resposta inválida. Por favor, escolha \'Bom\' ou \'Ruim\'.</span>';
+                nextButton.disabled = true;
+            }
+        }
+
+        function redirectToNextPage() {
+            const storedEstado = localStorage.getItem('estadoFusivel');
+
+            if (storedEstado) {
+                window.location.href = 'd.html';
+            } else {
+                alert("Por favor, escolha 'Bom' ou 'Ruim' antes de prosseguir.");
+            }
+        }
+    </script>
+</body>
+</html>

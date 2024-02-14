@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="PT-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Informações</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 18px;
+        }
+
+        button {
+            margin-top: -28px;
+            background-color: #4046a0;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            font-size: 25px;
+            margin-left: 10px;
+        }
+
+        .mensagem,
+        .mensagem-erro {
+            margin-top: 5px;
+        }
+
+        .mensagem {
+            color: green;
+        }
+
+        .mensagem-erro {
+            color: red;
+        }
+
+        h1 {
+            margin-left: 90px;
+        }
+
+        .resultado-container {
+            margin-top: 20px;
+        }
+
+        hr {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <img src="imagem 46.png" alt="Imagem">
+
+
+           <strong> <div class="resultado-container-externo">
+                <p id="resultadoPlaca"></p>
+            </div></strong>
+
+        <hr>
+        <strong>
+            <p id="infoResultado"></p>
+        </strong>
+
+        <hr>
+
+        <label for="newPageTextoInput2"><strong>Tensão da saída (Multímetro):</strong></label>
+        <strong><div class="r2"><p id="resultado2"></p></strong></div>
+<strong><p id="resultadoInput2"></p></strong>
+<div>
+<p id="outputValue"></p>
+
+        <div class="button">
+            <button onclick="window.location.href='l.html'"><strong>Próximo</strong></button>
+        </div>
+        <br>
+        <div class="button-container2">
+            <button onclick="copiarTudo()"><strong>Copiar Tudo</strong></button>
+        </div>
+    </div>
+    <script>
+        var inputValue = localStorage.getItem("newPageTextoInput4");
+        document.getElementById("outputValue").innerText = inputValue;
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Retrieve the stored evaluation from local storage
+            var avaliacaoVentilador = localStorage.getItem('avaliacaoVentilador');
+
+            // Display the stored evaluation on the page
+            if (avaliacaoVentilador) {
+                document.getElementById('infoAvaliacaoVentilador').innerText = 'Ventilador: ' + avaliacaoVentilador;
+            }
+
+            // Preencher as mensagens para cada input
+            for (let i = 1; i <= 4; i++) {
+                const inputId = "newPageTextoInput" + i;
+                const mensagem = localStorage.getItem(inputId + "Mensagem");
+                const mensagemElement = document.getElementById(inputId + "Mensagem");
+
+                if (mensagemElement && mensagem) {
+                    mensagemElement.innerText = mensagem;
+                    mensagemElement.className = mensagem.includes("Danificado") ? "mensagem-erro" : "mensagem";
+                }
+            }
+
+            var resultadoFusivel = localStorage.getItem('resultadoFusivel') || 'Nenhum resultado disponível.';
+            document.getElementById('spanResultadoFusivel').textContent = resultadoFusivel;
+
+            var resultadoPlaca = localStorage.getItem('resultadoPlaca') || 'Nenhuma escolha do usuário disponível.';
+            document.getElementById('spanEscolhaUsuario').textContent = resultadoPlaca;
+        });
+
+        // Function to copy the content of the page
+        function copiarTudo() {
+            // Extract only the text content of the document
+            const textContent = document.body.innerText;
+
+            // Use the Clipboard API to copy text content
+            navigator.clipboard.writeText(textContent)
+                .then(() => alert('Conteúdo da página copiado para a área de transferência!'))
+                .catch((err) => console.error('Erro ao copiar:', err));
+        }
+    </script>
+      
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            displayFusivelInfo();
+        });
+
+        function displayFusivelInfo() {
+            const storedEstado = localStorage.getItem('estadoFusivel');
+            const infoResultado = document.getElementById('infoResultado');
+
+            if (storedEstado) {
+                infoResultado.innerHTML = `Estado do Fusível: <span class="${storedEstado.includes('ruim') ? 'vermelho' : 'verde'}">${storedEstado}</span>`;
+            } else {
+                infoResultado.innerHTML = '<span class="vermelho">Nenhuma informação disponível.</span>';
+            }
+        }
+    </script>
+    <script>
+        // Recuperar a escolha do usuário da localStorage
+        var escolhaUsuario = localStorage.getItem('escolhaUsuario');
+
+        // Exibir o resultado com base na escolha do usuário
+        var resultadoPlacaElement = document.getElementById('resultadoPlaca');
+
+        if (escolhaUsuario === 'não') {
+            resultadoPlacaElement.innerText = "Placa está visivelmente normal.";
+            resultadoPlacaElement.classList.add('verde');
+        } else if (escolhaUsuario === 'sim') {
+            resultadoPlacaElement.innerText = "Placa está visivelmente queimada.";
+            resultadoPlacaElement.classList.add('vermelho');
+        } else {
+            resultadoPlacaElement.innerText = "Escolha inválida.";
+        }
+    </script>
+</body>
+
+</html>

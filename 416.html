@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Destino</title>
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        button {
+            margin-top: 10px; /* Adiciona um espaçamento acima do botão */
+            background-color: #4046a0;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            font-size: 25px;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+
+<body>
+ <h1>Equipamento analisado</h1>
+    <p><strong>Técnico responsável:</strong> <span id="tecnicoDisplay"></span></p>
+    <p><strong>Data:</strong> <span id="dataDisplay"></span></p>
+    <p><strong>Número O.s:</strong> <span id="numeroOSDisplay"></span></p>
+    <p><strong>Potência:</strong> <span id="quantidadeDisplay"></span> Va.</p>
+   <hr>
+       
+        <strong><p>Bateria</p></strong>
+        <div id="resultadoBateria"></div>
+   
+  
+    <div class="button">
+        <button onclick="window.location.href='pag01.html'"><strong>Início</strong></button>
+        <button onclick="imprimirPagina()"><strong>Imprimir</strong></button>
+    </div>
+    <script>
+        // Recupera o resultado armazenado no localStorage
+        const resultadoBateria = localStorage.getItem('resultadoBateria');
+
+        // Exibe o resultado na página
+        document.getElementById('resultadoBateria').innerHTML = "Resultado da Bateria: " + resultadoBateria;
+    </script>
+    <script>
+        
+        // Retrieve values from localStorage
+        var tecnico = localStorage.getItem("tecnico");
+        var data = localStorage.getItem("data");
+        var numeroOS = localStorage.getItem("numeroOS");
+        var potencia = localStorage.getItem("potencia");
+        document.addEventListener("DOMContentLoaded", function() {
+            // Recuperar os valores do localStorage
+            var valorInput1 = localStorage.getItem("newPageTextoInput1");
+            var valorInput2 = localStorage.getItem("newPageTextoInput2");
+            var valorInput3 = localStorage.getItem("newPageTextoInput3");
+            var valorInput4 = localStorage.getItem("newPageTextoInput4");
+
+            // Exibir os valores na página
+            document.getElementById("resultadoInput1").innerText = "Valor do carregador: " + valorInput1;
+            document.getElementById("resultadoInput2").innerText = "Valor da tensão de saída: " + valorInput2;
+            document.getElementById("resultadoInput3").innerText = "Valor da bateria: " + valorInput3;
+            document.getElementById("resultadoInput4").innerText = "Valor da tensão de saída: " + valorInput4;
+        });
+        // Retrieve values from localStorage for index.html
+        var indexTextoInput1 = localStorage.getItem('indexTextoInput1');
+        var indexTextoInput2 = localStorage.getItem('indexTextoInput2');
+        var indexTextoInput3 = localStorage.getItem('indexTextoInput3');
+        var indexTextoInput4 = localStorage.getItem('indexTextoInput4');
+        
+        // Retrieve values from localStorage for newPage.html
+        var newPageTextoInput1 = localStorage.getItem('newPageTextoInput1');
+        var newPageTextoInput2 = localStorage.getItem('newPageTextoInput2');
+        var newPageTextoInput3 = localStorage.getItem('newPageTextoInput3');
+        var newPageTextoInput4 = localStorage.getItem('newPageTextoInput4');
+
+
+        // Display stored values on the page
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('indexTextoInput1').innerText = indexTextoInput1;
+            document.getElementById('indexTextoInput2').innerText = indexTextoInput2;
+            document.getElementById('indexTextoInput3').innerText = indexTextoInput3;
+            document.getElementById('indexTextoInput4').innerText = indexTextoInput4;
+            document.getElementById('newPageTextoInput1').innerText = newPageTextoInput1;
+            document.getElementById('newPageTextoInput2').innerText = newPageTextoInput2;
+            document.getElementById('newPageTextoInput3').innerText = newPageTextoInput3;
+            document.getElementById('newPageTextoInput4').innerText = newPageTextoInput4;
+            
+        });
+ // Retrieve values from local storage and display them
+ document.addEventListener("DOMContentLoaded", function() {
+            for (let i = 1; i <= 4; i++) {
+                const inputId = "newPageTextoInput" + i;
+                const mensagem = localStorage.getItem(inputId + "Mensagem");
+                const resultadoElement = document.getElementById("resultado" + i);
+
+                if (mensagem) {
+                    resultadoElement.innerText = mensagem;
+                    resultadoElement.className = mensagem.includes("Aprovado") ? "mensagem" : "mensagem-erro";
+                } else {
+                    resultadoElement.innerText = "Sem resultado";
+                }
+            }
+        });
+        // Display information on the page
+        document.getElementById("spanTecnico").textContent = tecnico;
+        document.getElementById("spanData").textContent = data;
+        document.getElementById("spanNumeroOS").textContent = numeroOS;
+        document.getElementById("spanPotencia").textContent = potencia;
+        function imprimirPagina() {
+            window.print();
+        }
+        document.addEventListener('DOMContentLoaded', function () {
+            // Retrieve the stored evaluation from local storage
+            var avaliacaoVentilador = localStorage.getItem('avaliacaoVentilador');
+
+            // Display the stored evaluation on the page
+            if (avaliacaoVentilador) {
+                document.getElementById('infoAvaliacaoVentilador').innerText = 'Ventilador: ' + avaliacaoVentilador;
+            }
+
+            // Preencher as mensagens para cada input
+            for (let i = 1; i <= 4; i++) {
+                const inputId = "newPageTextoInput" + i;
+                const mensagem = localStorage.getItem(inputId + "Mensagem");
+                const mensagemElement = document.getElementById(inputId + "Mensagem");
+
+                if (mensagemElement && mensagem) {
+                    mensagemElement.innerText = mensagem;
+                    mensagemElement.className = mensagem.includes("Danificado") ? "mensagem-erro" : "mensagem";
+                }
+            }})
+    </script>
+      <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Retrieve values from localStorage
+            var tecnico = localStorage.getItem("tecnico");
+            var data = localStorage.getItem("data");
+            var numeroOS = localStorage.getItem("numeroOS");
+            var quantidade = localStorage.getItem("quantidade");
+
+            // Display values on the page
+            document.getElementById("tecnicoDisplay").innerText = tecnico || "N/A";
+            document.getElementById("dataDisplay").innerText = data || "N/A";
+            document.getElementById("numeroOSDisplay").innerText = numeroOS || "N/A";
+            document.getElementById("quantidadeDisplay").innerText = quantidade || "N/A";
+        });
+    </script>

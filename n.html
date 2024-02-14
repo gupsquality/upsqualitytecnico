@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .bloco {
+            margin-left: 600px;
+            margin-top: -200px;
+            margin-right: 300px;
+        }
+        button {
+            margin-top: 45px;
+            background-color: #4046a0;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            font-size: 25px;
+        }
+    </style>
+</head>
+<body>
+    <img src="Imagem42.jpg.png" alt=""><br><br>
+    <img src="Imagem43.png" alt="">
+
+    <p>Entregar o equipamento e a O.s no almoxarifado.</p>
+    <button onclick="abrirEmail()">Pedido de materia em garantia.</button><br>
+    <button class="button-container" onclick="window.location.href='p.html'"><strong>Próximo</strong></button>   
+
+    <div class="bloco">
+        <div id="conteudo" style="border: 5px solid #000; padding: 10px; ">
+            <form>
+                <p>Material solicitado</p>
+                <label for="NumeroOs">Numero O.s:</label>
+                <input type="text" id="NumeroOs" name="NumeroOs" required><br>
+
+                <label for="Fabricante">Fabricante:</label>
+                <input type="text" id="Fabricante" name="Fabricante" required><br>
+
+                <label for="Modelo">Modelo:</label>
+                <input type="text" id="Modelo" name="Modelo" required><br>
+
+                <label for="NumeroSerie">Numero de serie:</label>
+                <input type="text" id="NumeroSerie" name="NumeroSerie" required><br>
+
+                <label for="Potencia">Potencia:</label>
+                <input type="text" id="Potencia" name="Potencia" required><br>
+
+                <label for="Placa">Placa:</label>
+                <input type="text" id="Placa" name="Placa" required><br>
+                <label for="Placa">Bateria (quantidade<br> e modelo):</label>
+                <input type="text" id="Bateria" name="Bateria" required><br>
+
+                <button onclick="copiarTexto()">Copiar Texto</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+         function abrirEmail() {
+      var enderecoEmail = 'pedidodematerial@upsquality.com.br';
+
+      var assuntoEmail = 'Pedido de materia em garantia.';
+
+      var corpoEmail = '';
+
+      var linkEmail = 'mailto:' + enderecoEmail + '?subject=' + encodeURIComponent(assuntoEmail) + '&body=' + encodeURIComponent(corpoEmail);
+
+      window.location.href = linkEmail;
+    }
+        function copiarTexto() {
+            var numeroOs = document.getElementById("NumeroOs").value;
+            var fabricante = document.getElementById("Fabricante").value;
+            var modelo = document.getElementById("Modelo").value;
+            var numeroSerie = document.getElementById("NumeroSerie").value;
+            var potencia = document.getElementById("Potencia").value;
+            var placa = document.getElementById("Placa").value;
+            var Bateria = document.getElementById("Bateria").value;
+
+
+            var texto = `Número O.s: ${numeroOs}\nFabricante: ${fabricante}\nModelo: ${modelo}\nNúmero de Série: ${numeroSerie}\nPotência: ${potencia}\nPlaca: ${placa}\nBateria (quantidade e modelo): ${Bateria}`;
+
+            navigator.clipboard.writeText(texto);
+
+            alert("Texto copiado:\n" + texto);
+        }
+    </script>
+</body>
+</html>
