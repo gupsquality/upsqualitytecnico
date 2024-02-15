@@ -201,15 +201,25 @@
         }
 
         function nextPage() {
-            var inputs = document.querySelectorAll('input[type="text"]');
-            var allFieldsFilled = Array.from(inputs).every(input => input.value.trim() !== '');
+    var inputs = document.querySelectorAll('input[type="text"]');
+    var allFieldsFilled = Array.from(inputs).every(input => input.value.trim() !== '');
 
-            if (allFieldsFilled) {
-                window.location.href = "pag21 copy.html"; // Mudança: agora redireciona para outra página
-            } else {
-                alert("Por favor, preencha todos os campos antes de prosseguir.");
-            }
-        }
+    // Verificar se o cronômetro chegou a zero
+    var timerDisplay = document.getElementById('timer');
+    var timerValue = timerDisplay.textContent.split(':');
+    var minutes = parseInt(timerValue[0]);
+    var seconds = parseInt(timerValue[1]);
+    var timerReachedZero = minutes === 0 && seconds === 0;
+
+    if (allFieldsFilled && timerReachedZero) {
+        window.location.href = "pag22.html";
+    } else if (!allFieldsFilled) {
+        alert("Por favor, preencha todos os campos antes de prosseguir.");
+    } else {
+        alert("Aguarde o cronômetro zerar antes de prosseguir.");
+    }
+}
+
 
         function exibirMensagem(inputId, mensagem) {
             var mensagemElement = document.getElementById(inputId + "Mensagem");
@@ -234,6 +244,31 @@
                 localStorage.setItem(inputId + "Mensagem", mensagem);
             }
         }
+        let countdown;
+  let timeInSeconds = 120; // 2 minutos
+
+  function startTimer() {
+    const display = document.getElementById('timer');
+
+    function updateTimer() {
+      const minutes = Math.floor(timeInSeconds / 60);
+      let seconds = timeInSeconds % 60;
+      seconds = seconds < 10 ? '0' + seconds : seconds;
+
+      display.textContent = `${minutes}:${seconds}`;
+
+      if (timeInSeconds > 0) {
+        timeInSeconds--;
+      } else {
+        clearInterval(countdown);
+        alert('Tempo encerrado!');
+      }
+    }
+
+    updateTimer(); // Mostrar o tempo inicial imediatamente
+
+    countdown = setInterval(updateTimer, 1000);
+  }
     </script>
 
 </head>
@@ -249,6 +284,10 @@
         <img src="Imagem36.jpg.png" alt="">
         <div class="p4"><p><strong>Ligar a carga no No-break</strong></p></div>
         <div class="p5"><p><strong>Anotar o valor (multímetro)</strong></p></div>
+        <div>
+            <p><strong>Cronômetro:</strong> <span id="timer">2:00</span></p>
+            <button onclick="startTimer()">Iniciar Cronômetro</button>
+          </div>
         <h2>Rede</h2>
         <strong><label for="newPageTextoInput1">Tensão das baterias (voltímetro):</label></strong>
         <input type="text" id="newPageTextoInput1" name="newPageTextoInput1" oninput="atualizarLocalStorage('newPageTextoInput1')">

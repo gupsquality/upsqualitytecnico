@@ -252,6 +252,47 @@
                 }
             }
         };
+        var tempoRestante = 120; // 2 minutos em segundos
+var intervalId;
+
+function formatarTempo(segundos) {
+    var minutos = Math.floor(segundos / 60);
+    var segundosFormatados = segundos % 60;
+
+    return (
+        (minutos < 10 ? '0' : '') + minutos + ':' +
+        (segundosFormatados < 10 ? '0' : '') + segundosFormatados
+    );
+}
+
+function atualizarCronometro() {
+    document.getElementById('cronometro').innerText = formatarTempo(tempoRestante);
+}
+
+function iniciarCronometro() {
+    if (!intervalId) {
+        intervalId = setInterval(function () {
+            tempoRestante--;
+            atualizarCronometro();
+
+            if (tempoRestante === 0) {
+                clearInterval(intervalId);
+                alert('Tempo encerrado!');
+                habilitarBotaoProximo();
+            }
+        }, 1000);
+    }
+}
+
+function reiniciarCronometro() {
+    clearInterval(intervalId);
+    tempoRestante = 120; // reiniciar o tempo para 2 minutos
+    atualizarCronometro();
+    intervalId = null;
+}
+function habilitarBotaoProximo() {
+    document.getElementById('botaoProximo').removeAttribute('disabled');
+}
     </script>
 </head>
 <body>
@@ -266,7 +307,10 @@
     <img src="Imagem36.jpg.png" alt="">
     <div class="p4"><p><strong>Ligar a carga no No-break</strong></p></div>
     <div class="p5"><p><strong>Anotar o valor (multímetro)</strong></p></div>
-    
+    <br>
+    <div id="cronometro">02:00</div>
+    <button onclick="iniciarCronometro()">Iniciar Cronômetro</button>
+
     <h2>Rede</h2>
     
     <strong><label for="newPageTextoInput1">Tensão das baterias (voltímetro):</label></strong>
@@ -299,6 +343,6 @@
     <div id="quadrado4" class="quadrado4"></div>
     <div id="newPageTextoInput4Mensagem" class="mensagem"></div>
     
-    <div class="button"><button onclick="nextPage()">Próximo</button></div>
+    <button id="botaoProximo" onclick="nextPage()" disabled>Próximo</button>
 </body>
 </html>
