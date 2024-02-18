@@ -30,14 +30,14 @@
 
             if (parseFloat(inputValue) > 10) {
                 quadrado.style.backgroundColor = 'green';
-                mensagem.textContent = 'Bateria Boa';
+                mensagem.textContent = 'Bateria do cliente Boa';
                 mensagem.style.color = 'green';
-                result = 'Bateria Boa';
+                result = 'Bateria do cliente Boa';
             } else {
                 quadrado.style.backgroundColor = 'red';
-                mensagem.textContent = 'Bateria com Defeito';
+                mensagem.textContent = 'Bateria do cliente com Defeito';
                 mensagem.style.color = 'red';
-                result = 'Bateria com Defeito';
+                result = 'Bateria do cliente com Defeito';
             }
 
             // Store the result in localStorage
@@ -255,7 +255,7 @@
     <div class="p5"><p><strong>Coloque o testador de bateria.</strong></p></div>
     <div class="p6"><p><strong>Anotar o valor exibido no painel. (Caso não informar nenhum valor, colocar "0")</strong></p></div>
     <div class="hr2"><hr></div>
-    <h6>Tensão das baterias (Bateria teste)</h6>
+    <h6>Tensão das baterias do Cliente (Bateria teste)</h6>
     <strong><label for="numero1">Tensão das baterias (voltímetro):</label></strong>
     <input type="text" id="numero1" oninput="verificarNumeroVoltimetro('numero1', 'quadrado', 'mensagem')">
     <div id="quadrado" class="quadrado"></div>

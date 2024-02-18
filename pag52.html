@@ -35,19 +35,24 @@
         <label for="newPageTextoInput1"><strong>Tensão das baterias (voltímetro):</strong></label>
         <strong><div class="r1"><p id="resultado1"></p></strong></div>
         <strong> <p id="resultadoInput1"></p></strong>
+        <hr>
         <label for="newPageTextoInput2"><strong>Tensão da saída (Multímetro):</strong></label>
         <strong><div class="r2"><p id="resultado2"></p></strong></div>
 <strong><p id="resultadoInput2"></p></strong>
 <strong><hr></strong>
-        <strong><p>Bateria</p></strong>
+        <strong><p>Bateria / UPS </p></strong>
         <label for="newPageTextoInput3"><strong>Tensão das baterias:</strong></label>
         <strong><div class="r3"><p id="resultado3"></p></strong></div>
 <strong><p id="resultadoInput3"></p></strong>
+<hr>
         <label for="newPageTextoInput4"><strong>Tensão da saída:</strong></label>
         <strong><div class="r4"><p id="resultado4"></p></strong></div>
 <strong><p id="resultadoInput4"></p></strong>
     </div>
     <div>
+        <hr>
+        <strong><div id="resultadoBateria"></div></strong>
+<hr>
         <strong>
             <p id="infoAvaliacaoVentilador"></p>
         </strong>
@@ -58,8 +63,12 @@
         <button onclick="imprimirPagina()"><strong>Imprimir</strong></button>
     </div>
     <script>
-        
+          const resultadoBateria = localStorage.getItem('resultadoBateria') || 'Nenhum resultado disponível.';
+        const resultadoDiv = document.getElementById('resultadoBateria');
         // Retrieve values from localStorage
+        resultadoDiv.textContent = `Bateria: ${resultadoBateria}`;
+       
+
         var tecnico = localStorage.getItem("tecnico");
         var data = localStorage.getItem("data");
         var numeroOS = localStorage.getItem("numeroOS");

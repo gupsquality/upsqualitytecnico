@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Usar Senha</title>
+    <title>Criar Senha</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <style>
-    
-    body {
+body {
     font-family: Arial, Helvetica, sans-serif;
     align-self: center;
 }
@@ -35,26 +34,27 @@ button {
     }
 </style>
 <body>
+    <h1>Criar Senha</h1>
     <img src="Captura_de_tela_2023-11-18_125706-removebg-preview.png" alt="">
-    <h1>Insira a Senha</h1>
-
-    <form id="senhaForm">
-        <label for="senha"><strong>Digite a senha:</strong></label>
-        <input type="password" id="senha" name="senha" required>
-        <button type="button" onclick="verificarSenha()"><strong>Próximo</strong></button>
+    <form id="criarSenhaForm">
+        <label for="novaSenha"><strong>Digite a nova senha:</strong></label>
+        <input type="password" id="novaSenha" name="novaSenha" required>
+        <input type="checkbox" id="mostrarSenha" onclick="mostrarOcultarSenha()">
+        <label for="mostrarSenha">Mostrar Senha</label>
+        <button type="button" onclick="salvarSenha()"><strong>Salvar Senha</strong></button>
     </form>
 
     <script>
-        function verificarSenha() {
-            var senhaDigitada = document.getElementById('senha').value.trim();
-            var senhaCorreta = localStorage.getItem('senhaCriada');
+        function mostrarOcultarSenha() {
+            var campoSenha = document.getElementById('novaSenha');
+            campoSenha.type = (campoSenha.type === 'password') ? 'text' : 'password';
+        }
 
-            if (senhaDigitada === senhaCorreta) {
-                alert('Senha correta. Redirecionando...');
-                window.location.href = 'pag01.html'; // Altere para a página desejada
-            } else {
-                alert('Senha incorreta. Tente novamente.');
-            }
+        function salvarSenha() {
+            var novaSenha = document.getElementById('novaSenha').value.trim();
+            localStorage.setItem('senhaCriada', novaSenha);
+            alert('Senha criada com sucesso!');
+            window.location.href = 'index.html';
         }
     </script>
 </body>

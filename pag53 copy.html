@@ -73,7 +73,8 @@
         </strong>
 
         <hr>
-
+        <strong><div id="resultadoBateria"></div></strong>
+<hr>
         <strong>Tensão das baterias (voltímetro):</strong>
         <strong>
             <div id="newPageTextoInput1Mensagem" class="mensagem"></div>
@@ -109,6 +110,11 @@
     </div>
 
     <script>
+         const resultadoBateria = localStorage.getItem('resultadoBateria') || 'Nenhum resultado disponível.';
+        const resultadoDiv = document.getElementById('resultadoBateria');
+
+        // Display the result on the page
+        resultadoDiv.textContent = `Bateria: ${resultadoBateria}`
         document.addEventListener('DOMContentLoaded', function () {
             // Retrieve the stored evaluation from local storage
             var avaliacaoVentilador = localStorage.getItem('avaliacaoVentilador');
