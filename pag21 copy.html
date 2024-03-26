@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulário</title>
     <style>
+
         body {
             font-family: Arial, Helvetica, sans-serif;
             font-size: 20px;
@@ -142,75 +143,14 @@
             border-color: black;
         }
     </style>
-       <script>
+    <script>
         function atualizarLocalStorage(inputId) {
             var texto = document.getElementById(inputId).value;
             localStorage.setItem(inputId, texto);
-
-            var quadradoId;
-            switch (inputId) {
-                case "newPageTextoInput1":
-                    quadradoId = "quadrado";
-                    break;
-                case "newPageTextoInput2":
-                    quadradoId = "quadrado2";
-                    break;
-                case "newPageTextoInput3":
-                    quadradoId = "quadrado3";
-                    break;
-                case "newPageTextoInput4":
-                    quadradoId = "quadrado4";
-                    break;
-                default:
-                    quadradoId = "quadrado";
-            }
-
-            var quadrado = document.getElementById(quadradoId);
-            var numericValue = parseFloat(texto);
-
-            if ((numericValue >= 12.6 && numericValue <= 15.6) || (numericValue >= 14.6 && numericValue <= 30.6)) {
-                quadrado.style.backgroundColor = "green";
-                exibirMensagem(inputId, "Aprovado");
-            } else if (quadradoId === "quadrado3" && (numericValue >= 10 && numericValue <= 15 || numericValue >= 20 && numericValue <= 30)) {
-                quadrado.style.backgroundColor = "green";
-                exibirMensagem(inputId, "Aprovado");
-            } else if (quadradoId === "quadrado4" && (numericValue >= 106 && numericValue <= 122 || numericValue >= 210 && numericValue <= 230)) {
-                quadrado.style.backgroundColor = "green";
-                exibirMensagem(inputId, "Aprovado");
-            } else {
-                quadrado.style.backgroundColor = "red";
-                exibirMensagemErro(inputId, "Reprovado, falar com o supervisor");
-            }
-
-            if (quadradoId === "quadrado2") {
-                if ((numericValue >= 106 && numericValue <= 122) || (numericValue >= 210 && numericValue <= 230)) {
-                    quadrado.style.backgroundColor = "green";
-                    exibirMensagem(inputId, "Aprovado");
-                } else {
-                    quadrado.style.backgroundColor = "red";
-                    exibirMensagemErro(inputId, "Reprovado, falar com o supervisor");
-                }
-            }
-
-            // Salvar mensagens no localStorage
-            saveMessagesInLocalStorage();
+            updateAnotherPage();
+            validarTensao(inputId);
         }
-
-        function abrirPagina3() {
-            window.location.href = "pag22.html";
-        }
-
-        function nextPage() {
-            var inputs = document.querySelectorAll('input[type="text"]');
-            var allFieldsFilled = Array.from(inputs).every(input => input.value.trim() !== '');
-
-            if (allFieldsFilled) {
-                window.location.href = "pag21 - Copia.html"; // Mudança: agora redireciona para outra página
-            } else {
-                alert("Por favor, preencha todos os campos antes de prosseguir.");
-            }
-        }
-
+    
         function exibirMensagem(inputId, mensagem) {
             var mensagemElement = document.getElementById(inputId + "Mensagem");
             if (mensagemElement) {
@@ -218,7 +158,7 @@
                 mensagemElement.className = "mensagem";
             }
         }
-
+    
         function exibirMensagemErro(inputId, mensagem) {
             var mensagemElement = document.getElementById(inputId + "Mensagem");
             if (mensagemElement) {
@@ -226,41 +166,115 @@
                 mensagemElement.className = "mensagem-erro";
             }
         }
+        function validarTensaoSaida() {
+        var valor = parseFloat(document.getElementById('newPageTextoInput4').value);
 
-        function saveMessagesInLocalStorage() {
-            for (let i = 1; i <= 4; i++) {
+        if ((valor >= 106 && valor <= 125) || (valor >= 210 && valor <= 230)) {
+            exibirMensagem('newPageTextoInput4', 'Aprovado');
+            document.getElementById("quadrado4").style.backgroundColor = "green";
+        } else {
+            exibirMensagemErro('newPageTextoInput4', 'Reprovado, falar com o supervisor');
+            document.getElementById("quadrado4").style.backgroundColor = "red";
+        }
+
+        atualizarLocalStorage('newPageTextoInput4');
+    }
+        function validarTensao(inputId) {
+            var mensagem = '';
+            var valor = parseFloat(document.getElementById(inputId).value);
+    
+            if (inputId === 'newPageTextoInput3') {
+                if ((valor >= 11 && valor <= 15.6) || (valor >= 14.6 && valor <= 30.6)) {
+                    mensagem = 'Aprovado';
+                } else {
+                    mensagem = 'Reprovado, falar com o supervisor';
+                }
+            } else if (inputId === 'newPageTextoInput4') {
+                if ((valor >= 106 && valor <= 125) || (valor >= 210 && valor <= 230)) {
+                    mensagem = 'Aprovado';
+                } else {
+                    mensagem = 'Reprovado, falar com o supervisor';
+                }
+            }
+    
+            exibirMensagem(inputId, mensagem);
+    
+            var quadradoId = inputId.replace('newPageTextoInput', 'quadrado');
+            var cor = (mensagem === 'Aprovado') ? 'green' : 'red';
+            document.getElementById(quadradoId).style.backgroundColor = cor;
+        }
+    
+        function validarTensaoBaterias() {
+            var valor = parseFloat(document.getElementById('newPageTextoInput3').value);
+    
+            if ((valor >= 11 && valor <= 15.6) || (valor >= 14.6 && valor <= 30.6)) {
+                exibirMensagem('newPageTextoInput3', 'Aprovado');
+                document.getElementById("quadrado3").style.backgroundColor = "red";
+            } else {
+                exibirMensagemErro('newPageTextoInput3', 'Reprovado, falar com o supervisor');
+                document.getElementById("quadrado3").style.backgroundColor = "red";
+            }
+    
+            atualizarLocalStorage('newPageTextoInput3');
+        }
+    
+        function updateAnotherPage() {
+            var data = {};
+            for (let i = 3; i <= 4; i++) {
                 const inputId = "newPageTextoInput" + i;
+                const inputValue = document.getElementById(inputId).value;
                 const mensagem = document.getElementById(inputId + "Mensagem").innerText;
-                localStorage.setItem(inputId + "Mensagem", mensagem);
+                data[inputId] = inputValue.trim() + ' - ' + mensagem;
+            }
+    
+            localStorage.setItem("formData", JSON.stringify(data));
+        }
+    
+        function changePage() {
+            window.location.href = "pag21 - Copia.html";
+        }
+    
+        window.onload = function() {
+            for (let i = 3; i <= 4; i++) {
+                const inputId = "newPageTextoInput" + i;
+                const mensagem = localStorage.getItem(inputId + "Mensagem");
+                if (mensagem) {
+                    document.getElementById(inputId + "Mensagem").innerText = mensagem;
+                    if (mensagem.includes("Aprovado")) {
+                        document.getElementById(inputId + "Mensagem").className = "mensagem";
+                        document.getElementById(inputId).value = localStorage.getItem(inputId);
+                        document.getElementById("quadrado" + i).style.backgroundColor = "red";
+                    } else if (mensagem.includes("Reprovado")) {
+                        document.getElementById(inputId + "Mensagem").className = "mensagem-erro";
+                        document.getElementById(inputId).value = localStorage.getItem(inputId);
+                        document.getElementById("quadrado" + i).style.backgroundColor = "red";
+                    }
+                }
             }
         }
     </script>
-
 </head>
 <body>
-    <body>
-        <img src="Captura_de_tela_2023-11-18_125706-removebg-preview.png" alt="">
-        <h1>Teste No-brak</h1>
-       
-        <img src="Imagem37.jpg.png" alt="">
-        <div class="p6"><p><strong>Tirar do variac</strong></p></div>
-        <div class="p7"><p><strong>Anotar o valor (Voltímetro)</strong></p></div>
-        <div class="p8"><p><strong>Anotar o valor (Multímetro)</strong></p></div>
-        <h2>Bateria</h2>
-        <strong><label for="newPageTextoInput3">Tensão das baterias:</label></strong>
-        <input type="text" id="newPageTextoInput3" name="newPageTextoInput3" oninput="atualizarLocalStorage('newPageTextoInput3')">
-        <div id="quadrado3" class="quadrado3"></div>
-        <div id="newPageTextoInput3Mensagem" class="mensagem"></div>
-        <br><br>
+    <img src="Captura_de_tela_2023-11-18_125706-removebg-preview.png" alt="">
+    <h1>Teste No-brak</h1>
+   
+    <img src="Imagem37.jpg.png" alt="">
+    <div class="p6"><p><strong>Tirar do variac</strong></p></div>
+    <div class="p7"><p><strong>Anotar o valor (Voltímetro)</strong></p></div>
+    <div class="p8"><p><strong>Anotar o valor (Multímetro)</strong></p></div>
+    <h2>Bateria</h2>
+     <strong><label for="newPageTextoInput3">Tensão das baterias:</label></strong>
+    <input type="text" id="newPageTextoInput3" name="newPageTextoInput3" oninput="validarTensaoBaterias()">
+    <div id="quadrado3" class="quadrado"></div>
+    <div id="newPageTextoInput3Mensagem" class="mensagem"></div>
+    <br><br>
+    <strong><label for="newPageTextoInput4">Tensão da saída:</label></strong>
+    <input type="text" id="newPageTextoInput4" name="newPageTextoInput4" oninput="atualizarLocalStorage('newPageTextoInput4')">
+    <div id="quadrado4" class="quadrado"></div>
+    <div id="newPageTextoInput4Mensagem" class="mensagem"></div>
+    <button id="btnChangePage" onclick="changePage()">Proximo</button>
     
-        <strong><label for="newPageTextoInput4">Tensão da saída:</label></strong>
-        <input type="text" id="newPageTextoInput4" name="newPageTextoInput4" oninput="atualizarLocalStorage('newPageTextoInput4')">
-        <div id="quadrado4" class="quadrado4"></div>
-        <div id="newPageTextoInput4Mensagem" class="mensagem"></div>
-        <div class="button"><button onclick="nextPage()">Próximo</button></div>
-        <form>
-        </form>
-    </html>
-    <div>
+    
 </body>
 </html>
+

@@ -219,7 +219,16 @@
         alert("Aguarde o cronômetro zerar antes de prosseguir.");
     }
 }
+ function nextPage() {
+            var inputs = document.querySelectorAll('input[type="text"]');
+            var allFieldsFilled = Array.from(inputs).every(input => input.value.trim() !== '');
 
+            if (allFieldsFilled) {
+                window.location.href = "pag22.html"; // Mudança: agora redireciona para outra página
+            } else {
+                alert("Por favor, preencha todos os campos antes de prosseguir.");
+            }
+        }
 
         function exibirMensagem(inputId, mensagem) {
             var mensagemElement = document.getElementById(inputId + "Mensagem");

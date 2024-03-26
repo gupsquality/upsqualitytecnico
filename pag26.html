@@ -3,10 +3,161 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página 3</title>
-   
+    <title>Bateria</title>
+    <style>
+          body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        img {
+            width: 80px;
+            margin-left: 180px;
+            margin-top: -50px;
+        }
+
+
+        button {
+            margin-top: 10px;
+            background-color: #4046a0;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #2c327a;
+        }
+
+
+
+        /* Additional styles for printing */
+        @media print {
+            body {
+                background-color: #fff;
+            }
+
+            button {
+                display: none; /* Hide buttons when printing */
+            }
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        img {
+            width: 80px;
+            margin-left: 180px;
+            margin-top: -50px;
+        }
+
+
+        button {
+            margin-top: 10px;
+            background-color: #4046a0;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #2c327a;
+        }
+      
+    </style>
+</head>
+<body>
+    <h2>Folha de teste</h2>
+        <label for="indexTextoInput1"><strong>Numero da O.s:</strong></label>
+        <span id="indexTextoInput1"></span>
+        <br>
+        <label for="indexTextoInput2"><strong>Modelo:</strong></label>
+        <span id="indexTextoInput2"></span>
+        <br>
+        <img src="Imagem4.png" alt="">
+        <br>
+        <div class="bloco">
+            <strong><label for="indexTextoInput3">Potencia:</label></strong>
+            <span id="indexTextoInput3"></span>
+            <br>
+            <label for="indexTextoInput4"><strong>Técnico responsável:</strong></label>
+            <span id="indexTextoInput4"></span>
+        </div>
+        <hr>
+        <div>
+            <strong><p>Rede</p></strong>
+            <label for="newPageTextoInput1"><strong>Tensão das baterias (voltímetro):</strong></label>
+            <strong><div class="r1"><p id="resultado1"></p></strong></div>
+            <strong> <p id="resultadoInput1"></p></strong>
+            <br>
+            <label for="newPageTextoInput2"><strong>Tensão da saída (Multímetro):</strong></label>
+            <strong><div class="r2"><p id="resultado2"></p></strong></div>
+<strong><p id="resultadoInput2"></p></strong>
+<hr>
+<STRONG><p>Baterias</p></STRONG>
+<strong><div id="dataContainer"></div></strong>
+    <button onclick="window.location.href='pag27.html'">Proximo</button>
+    <button onclick="imprimirPagina()">Imprimir Página</button>
+
     <script>
-           document.addEventListener("DOMContentLoaded", function() {
+         window.onload = function() {
+            var dataContainer = document.getElementById("dataContainer");
+            var data = JSON.parse(localStorage.getItem("formData"));
+
+            if (data) {
+                for (var key in data) {
+                    if (data.hasOwnProperty(key)) {
+                        var label = key;
+                        var value = data[key];
+                        var messageParts = value.split(" - ");
+
+                        // Verifica se o key corresponde ao ID do input para substituir pelo texto desejado
+                        if (key === 'newPageTextoInput3') {
+                            label = 'Tensão das baterias';
+                            // Convertendo o valor para número e verificando os intervalos
+                            var numericValue = parseFloat(messageParts[0]);
+                            if ((numericValue >= 11 && numericValue <= 15.6) || (numericValue >= 14.6 && numericValue <= 30.6)) {
+                                messageParts[1] = "Aprovado";
+                            } else {
+                                messageParts[1] = "Reprovado, falar com o supervisor";
+                            }
+                        } else if (key === 'newPageTextoInput4') {
+                            label = 'Tensão de saída';
+                            // Convertendo o valor para número e verificando os intervalos
+                            var numericValue = parseFloat(messageParts[0]);
+                            if ((numericValue >= 106 && numericValue <= 125) || (numericValue >= 210 && numericValue <= 230)) {
+                                messageParts[1] = "Aprovado";
+                            } else {
+                                messageParts[1] = "Reprovado, falar com o supervisor";
+                            }
+                        }
+                        var p = document.createElement("p");
+                        p.innerText = label + ": " + messageParts.join(" - ");
+                        dataContainer.appendChild(p);
+                    }
+                }
+            } else {
+                dataContainer.innerText = "Nenhum dado recebido.";
+            }
+        };
+         document.addEventListener("DOMContentLoaded", function() {
             // Recuperar os valores do localStorage
             var valorInput1 = localStorage.getItem("newPageTextoInput1");
             var valorInput2 = localStorage.getItem("newPageTextoInput2");
@@ -64,103 +215,25 @@
         function imprimirPagina() {
             window.print();
         }
+        function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, '\\$&');
+            var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+        }
+
+        var tensaoBaterias = getParameterByName('newPageTextoInput3');
+        var tensaoSaida = getParameterByName('newPageTextoInput4');
+        var statusBaterias = getParameterByName('statusBaterias');
+        var statusSaida = getParameterByName('statusSaida');
+
+        document.getElementById('tensaoBateriasValor').innerText = "Tensão das Baterias: " + tensaoBaterias;
+        document.getElementById('tensaoSaidaValor').innerText = "Tensão da Saída: " + tensaoSaida;
+        document.getElementById('tensaoBateriasStatus').innerText = "" + statusBaterias;
+        document.getElementById('tensaoSaidaStatus').innerText = "" + statusSaida;
     </script>
-
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-
-
-        img {
-            width: 80px;
-            margin-left: 180px;
-            margin-top: -50px;
-        }
-
-
-        button {
-            margin-top: 10px;
-            background-color: #4046a0;
-            color: #fff;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-bottom: 10px;
-            font-size: 18px;
-            transition: background-color 0.3s ease;
-        }
-
-        button:hover {
-            background-color: #2c327a;
-        }
-
-
-
-        /* Additional styles for printing */
-        @media print {
-            body {
-                background-color: #fff;
-            }
-
-            button {
-                display: none; /* Hide buttons when printing */
-            }
-        }
-    </style>
-</head>
-<body>
-    <div>
-        <h2>Folha de teste</h2>
-        <label for="indexTextoInput1"><strong>Numero da O.s:</strong></label>
-        <span id="indexTextoInput1"></span>
-        <br>
-        <label for="indexTextoInput2"><strong>Modelo:</strong></label>
-        <span id="indexTextoInput2"></span>
-        <br>
-        <img src="Imagem4.png" alt="">
-        <br>
-        <div class="bloco">
-            <strong><label for="indexTextoInput3">Potencia:</label></strong>
-            <span id="indexTextoInput3"></span>
-            <br>
-            <label for="indexTextoInput4"><strong>Técnico responsável:</strong></label>
-            <span id="indexTextoInput4"></span>
-        </div>
-       
-        
-        
-       
-        <div>
-            <strong><p>Rede</p></strong>
-            <label for="newPageTextoInput1"><strong>Tensão das baterias (voltímetro):</strong></label>
-            <strong><div class="r1"><p id="resultado1"></p></strong></div>
-            <strong> <p id="resultadoInput1"></p></strong>
-            <br>
-            <label for="newPageTextoInput2"><strong>Tensão da saída (Multímetro):</strong></label>
-            <strong><div class="r2"><p id="resultado2"></p></strong></div>
-<strong><p id="resultadoInput2"></p></strong>
-<br>
-            <strong><p>Bateria</p></strong>
-            <label for="newPageTextoInput3"><strong>Tensão das baterias:</strong></label>
-            <strong><div class="r3"></strong></div>
-<strong><p id="resultadoInput3"></p></strong>
-<br>
-            <label for="newPageTextoInput4"><strong>Tensão da saída:</strong></label>
-            <strong><div class="r4"></strong></div>
- <strong><p id="resultadoInput4"></p></strong>
-        </div>
-
-        <div>
-            <label for="avaliacaoVentilador"><strong>Avaliação do Ventilador:</strong></label>
-            <span id="avaliacaoVentilador"></span>
-            <button onclick="window.location.href='pag27.html'">Proximo</button>
-            <button onclick="imprimirPagina()">Imprimir Página</button>
-        </div>
-    </div>
 </body>
 </html>
