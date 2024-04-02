@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Verificar Status do Equipamento</title>
+</head>
+<style>
+    body{
+        font-family: Arial, Helvetica, sans-serif;
+    }
+     button {
+            background-color: #4c5baf; /* Cor de fundo verde */
+            color: white; /* Cor do texto branco */
+            padding: 5px 10px; /* Espaçamento interno */
+            text-align: center; /* Alinhamento do texto */
+            text-decoration: none; /* Remover sublinhado padrão */
+            display: inline-block; /* Exibir como bloco inline para ajustar ao conteúdo */
+            font-size: 15px; /* Tamanho da fonte */
+            cursor: pointer; /* Cursor de apontar ao passar o mouse */
+            border-radius: 4px; /* Borda arredondada */
+            font-family: Arial, Helvetica, sans-serif;
+            border-radius: 20px;
+        }
+
+</style>
+<body>
+<h1>Equipamento de locação</h1>
+
+
+<h2>Verificar Status de Etiqueta</h2>
+
+<select id="opcoes2">
+  <strong><option value="Tem etiqueta">Tem Etiqueta</option></strong>
+  <option value="Nao Tem etiqueta">Não Tem etiqueta</option>
+</select>
+
+<button onclick="verificaretiqueta()"><strong>Verificar</strong></button>
+
+<strong><div id="mensagem2"></div></strong>
+<button onclick="window.location.href='pag06loc.html'"><strong>Proximo</strong></button>
+
+
+<script>
+
+function verificaretiqueta() {
+    var opcaoSelecionada = document.getElementById("opcoes2").value;
+    var mensagemElement = document.getElementById("mensagem2");
+
+    if (opcaoSelecionada === "Tem etiqueta") {
+        mensagemElement.textContent = "Embalar o equipamento";
+    } else if (opcaoSelecionada === "Nao Tem etiqueta") {
+        mensagemElement.textContent = "Colocar etiqueta";
+    } else {
+        mensagemElement.textContent = "Opção inválida.";
+    }
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Verificar Status do Equipamento</title>
+</head>
+<style>
+    body{
+        font-family: Arial, Helvetica, sans-serif;
+    }
+     button {
+            background-color: #4c5baf; /* Cor de fundo verde */
+            color: white; /* Cor do texto branco */
+            padding: 5px 10px; /* Espaçamento interno */
+            text-align: center; /* Alinhamento do texto */
+            text-decoration: none; /* Remover sublinhado padrão */
+            display: inline-block; /* Exibir como bloco inline para ajustar ao conteúdo */
+            font-size: 15px; /* Tamanho da fonte */
+            cursor: pointer; /* Cursor de apontar ao passar o mouse */
+            border-radius: 4px; /* Borda arredondada */
+            font-family: Arial, Helvetica, sans-serif;
+            border-radius: 20px;
+        }
+
+</style>
+<body>
+<h1>Equipamento de locação</h1>
+<h2>Verificar Status do Equipamento</h2>
+
+<select id="opcoes">
+  <option value="funcionando">Funcionando</option>
+  <option value="naoFuncionando">Não Funcionando</option>
+</select>
+
+<button onclick="verificarStatus()"><strong>Verificar</strong></button>
+
+<strong><div id="mensagem"></div></strong>
+<button onclick="window.location.href='pag03loc.html'"><strong>Proximo</strong></button>
+
+<script>
+function verificarStatus() {
+    var opcaoSelecionada = document.getElementById("opcoes").value;
+    var mensagemElement = document.getElementById("mensagem");
+
+    if (opcaoSelecionada === "funcionando") {
+        mensagemElement.textContent = "Retirar as baterias (entregar ao almoxarifado)";
+    } else if (opcaoSelecionada === "naoFuncionando") {
+        mensagemElement.textContent = "Falar com o supervisor";
+    } else {
+        mensagemElement.textContent = "Opção inválida.";
+    }
+}
+</script>
+
+</body>
+</html>
