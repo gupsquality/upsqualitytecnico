@@ -155,7 +155,7 @@
                 var quadrado = document.getElementById(quadradoId);
                 var numericValue = parseFloat(texto);
 
-                if ((numericValue >= 12.6 && numericValue <= 15.6) || (numericValue >= 14.6 && numericValue <= 30.6)) {
+                if ((numericValue >= 12.6 && numericValue <= 15.6) || (numericValue >= 13 && numericValue <= 29)) {
                 quadrado.style.backgroundColor = "green";
                 exibirMensagem(inputId, "Aprovado");
             } else if (quadradoId === "quadrado3" && (numericValue >= 10 && numericValue <= 15 || numericValue >= 20 && numericValue <= 30)) {
