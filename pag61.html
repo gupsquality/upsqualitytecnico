@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="PT-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bateria</title>
+    <style>
+          body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        img {
+            width: 80px;
+            margin-left: 180px;
+            margin-top: -50px;
+        }
+
+
+        button {
+            margin-top: 10px;
+            background-color: #4046a0;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #2c327a;
+        }
+
+
+
+        /* Additional styles for printing */
+        @media print {
+            body {
+                background-color: #fff;
+            }
+
+            button {
+                display: none; /* Hide buttons when printing */
+            }
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        img {
+            width: 80px;
+            margin-left: 180px;
+            margin-top: -50px;
+        }
+
+
+        button {
+            margin-top: 10px;
+            background-color: #4046a0;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #2c327a;
+        }
+      
+    </style>
+</head>
+<body>
+    <h2>Folha de teste</h2>
+        <label for="indexTextoInput1"><strong>Numero da O.s:</strong></label>
+        <span id="indexTextoInput1"></span>
+        <br>
+        <label for="indexTextoInput2"><strong>Modelo:</strong></label>
+        <span id="indexTextoInput2"></span>
+        <br>
+        <img src="Imagem4.png" alt="">
+        <br>
+        <div class="bloco">
+            <strong><label for="indexTextoInput3">Potencia:</label></strong>
+            <span id="indexTextoInput3"></span>
+            <br>
+            <label for="indexTextoInput4"><strong>Técnico responsável:</strong></label>
+            <span id="indexTextoInput4"></span>
+        </div>
+        <hr>
+        <div>
+            <strong><p>Rede</p></strong>
+            <label for="newPageTextoInput1"><strong>Tensão das baterias (voltímetro):</strong></label>
+            <strong><div class="r1"><p id="resultado1"></p></strong></div>
+            <strong> <p id="resultadoInput1"></p></strong>
+            <br>
+            <label for="newPageTextoInput2"><strong>Tensão da saída (Multímetro):</strong></label>
+            <strong><div class="r2"><p id="resultado2"></p></strong></div>
+<strong><p id="resultadoInput2"></p></strong>
+<hr>
+<STRONG><p>Baterias</p></STRONG>
+<strong><div id="dataContainer"></div></strong>
+    <button onclick="window.location.href='pag27.html'">Proximo</button>
+    <button onclick="imprimirPagina()">Imprimir Página</button>
+
+    <script>
+         window.onload = function() {
+            var dataContainer = document.getElementById("dataContainer");
+            var data = JSON.parse(localStorage.getItem("formData"));
+
+            if (data) {
+                for (var key in data) {
+                    if (data.hasOwnProperty(key)) {
+                        var label = key;
+                        var value = data[key];
+                        var messageParts = value.split(" - ");
+
+                        // Verifica se o key corresponde ao ID do input para substituir pelo texto desejado
+                        if (key === 'newPageTextoInput3') {
+                            label = 'Tensão das baterias';
+                            // Convertendo o valor para número e verificando os intervalos
+                            var numericValue = parseFloat(messageParts[0]);
+                            if ((numericValue >= 11 && numericValue <= 15.6) || (numericValue >= 14.6 && numericValue <= 30.6)) {
+                                messageParts[1] = "Aprovado";
+                            } else {
+                                messageParts[1] = "Reprovado, falar com o supervisor";
+                            }
+                        } else if (key === 'newPageTextoInput4') {
+                            label = 'Tensão de saída';
+                            // Convertendo o valor para número e verificando os intervalos
+                            var numericValue = parseFloat(messageParts[0]);
+                            if ((numericValue >= 106 && numericValue <= 125) || (numericValue >= 210 && numericValue <= 230)) {
+                                messageParts[1] = "Aprovado";
+                            } else {
+                                messageParts[1] = "Reprovado, falar com o supervisor";
+                            }
+                        }
+                        var p = document.createElement("p");
+                        p.innerText = label + ": " + messageParts.join(" - ");
+                        dataContainer.appendChild(p);
+                    }
+                }
+            } else {
+                dataContainer.innerText = "Nenhum dado recebido.";
+            }
+        };
+         document.addEventListener("DOMContentLoaded", function() {
+            // Recuperar os valores do localStorage
+            var valorInput1 = localStorage.getItem("newPageTextoInput1");
+            var valorInput2 = localStorage.getItem("newPageTextoInput2");
+            var valorInput3 = localStorage.getItem("newPageTextoInput3");
+            var valorInput4 = localStorage.getItem("newPageTextoInput4");
+
+            // Exibir os valores na página
+            document.getElementById("resultadoInput1").innerText = "Valor do carregador: " + valorInput1;
+            document.getElementById("resultadoInput2").innerText = "Valor da tensão de saída: " + valorInput2;
+            document.getElementById("resultadoInput3").innerText = "Valor da bateria: " + valorInput3;
+            document.getElementById("resultadoInput4").innerText = "Valor da tensão de saída: " + valorInput4;
+        });
+        // Retrieve values from localStorage for index.html
+        var indexTextoInput1 = localStorage.getItem('indexTextoInput1');
+        var indexTextoInput2 = localStorage.getItem('indexTextoInput2');
+        var indexTextoInput3 = localStorage.getItem('indexTextoInput3');
+        var indexTextoInput4 = localStorage.getItem('indexTextoInput4');
+        
+        // Retrieve values from localStorage for newPage.html
+        var newPageTextoInput1 = localStorage.getItem('newPageTextoInput1');
+        var newPageTextoInput2 = localStorage.getItem('newPageTextoInput2');
+        var newPageTextoInput3 = localStorage.getItem('newPageTextoInput3');
+        var newPageTextoInput4 = localStorage.getItem('newPageTextoInput4');
+
+        // Retrieve value from localStorage for ventilador.html
+        var avaliacaoVentilador = localStorage.getItem('avaliacaoVentilador');
+
+        // Display stored values on the page
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('indexTextoInput1').innerText = indexTextoInput1;
+            document.getElementById('indexTextoInput2').innerText = indexTextoInput2;
+            document.getElementById('indexTextoInput3').innerText = indexTextoInput3;
+            document.getElementById('indexTextoInput4').innerText = indexTextoInput4;
+            document.getElementById('newPageTextoInput1').innerText = newPageTextoInput1;
+            document.getElementById('newPageTextoInput2').innerText = newPageTextoInput2;
+            document.getElementById('newPageTextoInput3').innerText = newPageTextoInput3;
+            document.getElementById('newPageTextoInput4').innerText = newPageTextoInput4;
+            document.getElementById('avaliacaoVentilador').innerText = avaliacaoVentilador;
+        });
+ // Retrieve values from local storage and display them
+ document.addEventListener("DOMContentLoaded", function() {
+            for (let i = 1; i <= 4; i++) {
+                const inputId = "newPageTextoInput" + i;
+                const mensagem = localStorage.getItem(inputId + "Mensagem");
+                const resultadoElement = document.getElementById("resultado" + i);
+
+                if (mensagem) {
+                    resultadoElement.innerText = mensagem;
+                    resultadoElement.className = mensagem.includes("Aprovado") ? "mensagem" : "mensagem-erro";
+                } else {
+                    resultadoElement.innerText = "Sem resultado";
+                }
+            }
+        });
+        function imprimirPagina() {
+            window.print();
+        }
+        function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, '\\$&');
+            var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+        }
+
+        var tensaoBaterias = getParameterByName('newPageTextoInput3');
+        var tensaoSaida = getParameterByName('newPageTextoInput4');
+        var statusBaterias = getParameterByName('statusBaterias');
+        var statusSaida = getParameterByName('statusSaida');
+
+        document.getElementById('tensaoBateriasValor').innerText = "Tensão das Baterias: " + tensaoBaterias;
+        document.getElementById('tensaoSaidaValor').innerText = "Tensão da Saída: " + tensaoSaida;
+        document.getElementById('tensaoBateriasStatus').innerText = "" + statusBaterias;
+        document.getElementById('tensaoSaidaStatus').innerText = "" + statusSaida;
+    </script>
+</body>
+</html>

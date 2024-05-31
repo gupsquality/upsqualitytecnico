@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="PT-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário</title>
+    <style>
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 20px;
+        }
+
+        .quadrado {
+            width: 100px;
+            height: 20px;
+            margin-left: 15px;
+            margin-top: -100px;
+            transition: background-color 0.5s;
+            display: inline-block;
+        }
+
+        .quadrado2 {
+            width: 100px;
+            height: 20px;
+            margin-left: 15px;
+            margin-top: -100px;
+            transition: background-color 0.5s;
+            display: inline-block;
+        }
+
+        .quadrado3 {
+            width: 100px;
+            height: 20px;
+            margin-left: 15px;
+            margin-top: -100px;
+            transition: background-color 0.5s;
+            display: inline-block;
+        }
+
+        .quadrado4 {
+            width: 100px;
+            height: 20px;
+            margin-left: 15px;
+            margin-top: -150px;
+            transition: background-color 0.5s;
+            display: inline-block;
+        }
+
+        .mensagem {
+            margin-top: 5px;
+            color: green; /* Adjust the color as needed */
+        }
+
+        .mensagem-erro {
+            margin-top: 5px;
+            color: red; /* Adjust the color as needed */
+        }
+
+        button {
+            margin-top: 20px;
+            background-color: #4046a0;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            font-size: 20px;
+            margin-left: 10px;
+        }
+
+        h2 {
+            margin-left: 500px;
+        }
+
+        h1 {
+            margin-left: 90px;
+        }
+
+        .img2 {
+            width: 1000px;
+        }
+
+        .p1 {
+            margin-left: 10px;
+            margin-right: 1120px;
+            border-style: groove;
+            border-color: black;
+        }
+
+        .p2 {
+            margin-left: 480px;
+            margin-top: -110px;
+            margin-right: 550px;
+            border-style: groove;
+            border-color: black;
+        }
+
+        .p3 {
+            margin-left: 790px;
+            margin-top: -117px;
+            border-style: groove;
+            margin-right: 340px;
+            border-color: black;
+        }
+
+        .p4 {
+            margin-left: 5px;
+            border-style: groove;
+            margin-right: 999px;
+            border-color: black;
+        }
+
+        .p5 {
+            margin-left: 280px;
+            margin-top: -85px;
+            border-style: groove;
+            margin-right: 700px;
+            border-color: black;
+        }
+
+        .p6 {
+            margin-left: 5px;
+            border-style: groove;
+            margin-right: 1095px;
+            border-color: black;
+        }
+
+        .p7 {
+            margin-left: 230px;
+            margin-top: -70px;
+            margin-right: 730px;
+            border-style: groove;
+            border-color: black;
+        }
+
+        .p8 {
+            margin-left: 550px;
+            margin-top: -67px;
+            border-style: groove;
+            margin-right: 430px;
+            border-color: black;
+        }
+    </style>
+    <script>
+        function atualizarLocalStorage(inputId) {
+            var texto = document.getElementById(inputId).value;
+            localStorage.setItem(inputId, texto);
+            updateAnotherPage();
+            validarTensao(inputId);
+        }
+    
+        function exibirMensagem(inputId, mensagem) {
+            var mensagemElement = document.getElementById(inputId + "Mensagem");
+            if (mensagemElement) {
+                mensagemElement.innerText = mensagem;
+                mensagemElement.className = "mensagem";
+            }
+        }
+    
+        function exibirMensagemErro(inputId, mensagem) {
+            var mensagemElement = document.getElementById(inputId + "Mensagem");
+            if (mensagemElement) {
+                mensagemElement.innerText = mensagem;
+                mensagemElement.className = "mensagem-erro";
+            }
+        }
+        function validarTensaoSaida() {
+        var valor = parseFloat(document.getElementById('newPageTextoInput4').value);
+
+        if ((valor >= 106 && valor <= 125) || (valor >= 210 && valor <= 230)) {
+            exibirMensagem('newPageTextoInput4', 'Aprovado');
+            document.getElementById("quadrado4").style.backgroundColor = "green";
+        } else {
+            exibirMensagemErro('newPageTextoInput4', 'Reprovado, falar com o supervisor');
+            document.getElementById("quadrado4").style.backgroundColor = "red";
+        }
+
+        atualizarLocalStorage('newPageTextoInput4');
+    }
+        function validarTensao(inputId) {
+            var mensagem = '';
+            var valor = parseFloat(document.getElementById(inputId).value);
+    
+            if (inputId === 'newPageTextoInput3') {
+                if ((valor >= 11 && valor <= 15.6) || (valor >= 14.6 && valor <= 30.6)) {
+                    mensagem = 'Aprovado';
+                } else {
+                    mensagem = 'Reprovado, falar com o supervisor';
+                }
+            } else if (inputId === 'newPageTextoInput4') {
+                if ((valor >= 106 && valor <= 125) || (valor >= 210 && valor <= 230)) {
+                    mensagem = 'Aprovado';
+                } else {
+                    mensagem = 'Reprovado, falar com o supervisor';
+                }
+            }
+    
+            exibirMensagem(inputId, mensagem);
+    
+            var quadradoId = inputId.replace('newPageTextoInput', 'quadrado');
+            var cor = (mensagem === 'Aprovado') ? 'green' : 'red';
+            document.getElementById(quadradoId).style.backgroundColor = cor;
+        }
+    
+        function validarTensaoBaterias() {
+            var valor = parseFloat(document.getElementById('newPageTextoInput3').value);
+    
+            if ((valor >= 11 && valor <= 15.6) || (valor >= 14.6 && valor <= 30.6)) {
+                exibirMensagem('newPageTextoInput3', 'Aprovado');
+                document.getElementById("quadrado3").style.backgroundColor = "red";
+            } else {
+                exibirMensagemErro('newPageTextoInput3', 'Reprovado, falar com o supervisor');
+                document.getElementById("quadrado3").style.backgroundColor = "red";
+            }
+    
+            atualizarLocalStorage('newPageTextoInput3');
+        }
+    
+        function updateAnotherPage() {
+            var data = {};
+            for (let i = 3; i <= 4; i++) {
+                const inputId = "newPageTextoInput" + i;
+                const inputValue = document.getElementById(inputId).value;
+                const mensagem = document.getElementById(inputId + "Mensagem").innerText;
+                data[inputId] = inputValue.trim() + ' - ' + mensagem;
+            }
+    
+            localStorage.setItem("formData", JSON.stringify(data));
+        }
+    
+        function changePage() {
+            window.location.href = "pag60.html";
+        }
+    
+        window.onload = function() {
+            for (let i = 3; i <= 4; i++) {
+                const inputId = "newPageTextoInput" + i;
+                const mensagem = localStorage.getItem(inputId + "Mensagem");
+                if (mensagem) {
+                    document.getElementById(inputId + "Mensagem").innerText = mensagem;
+                    if (mensagem.includes("Aprovado")) {
+                        document.getElementById(inputId + "Mensagem").className = "mensagem";
+                        document.getElementById(inputId).value = localStorage.getItem(inputId);
+                        document.getElementById("quadrado" + i).style.backgroundColor = "red";
+                    } else if (mensagem.includes("Reprovado")) {
+                        document.getElementById(inputId + "Mensagem").className = "mensagem-erro";
+                        document.getElementById(inputId).value = localStorage.getItem(inputId);
+                        document.getElementById("quadrado" + i).style.backgroundColor = "red";
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <img src="Captura_de_tela_2023-11-18_125706-removebg-preview.png" alt="">
+    <h1>Teste No-brak</h1>
+   
+    <img src="Imagem37.jpg.png" alt="">
+    <div class="p6"><p><strong>Tirar do variac</strong></p></div>
+    <div class="p7"><p><strong>Anotar o valor (Voltímetro)</strong></p></div>
+    <div class="p8"><p><strong>Anotar o valor (Multímetro)</strong></p></div>
+    <h2>Bateria</h2>
+     <strong><label for="newPageTextoInput3">Tensão das baterias:</label></strong>
+    <input type="text" id="newPageTextoInput3" name="newPageTextoInput3" oninput="validarTensaoBaterias()">
+    <div id="quadrado3" class="quadrado"></div>
+    <div id="newPageTextoInput3Mensagem" class="mensagem"></div>
+    <br><br>
+    <strong><label for="newPageTextoInput4">Tensão da saída:</label></strong>
+    <input type="text" id="newPageTextoInput4" name="newPageTextoInput4" oninput="atualizarLocalStorage('newPageTextoInput4')">
+    <div id="quadrado4" class="quadrado"></div>
+    <div id="newPageTextoInput4Mensagem" class="mensagem"></div>
+    <button id="btnChangePage" onclick="changePage()">Proximo</button>
+    
+    
+</body>
+</html>
+
